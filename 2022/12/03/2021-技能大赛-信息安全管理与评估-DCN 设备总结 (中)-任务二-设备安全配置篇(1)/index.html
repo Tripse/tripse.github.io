@@ -1,0 +1,601 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>2021-技能大赛-信息安全管理与评估-DCN 设备总结(中)-任务二-设备安全配置篇(1) | Tripse Blog</title><meta name="keywords" content="信息安全管理与评估 信息安全管理与评估答案 技能大赛 高职技能大赛 DCN答案"><meta name="author" content="Tripse"><meta name="copyright" content="Tripse"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇（1）  author：leadlife time：2022&#x2F;11&#x2F;30 微信：Tripse 知识星球：LeadlifeSec QQ：482949203 QQ群：775454947  在我们的 《2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置》篇，我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2021-技能大赛-信息安全管理与评估-DCN 设备总结(中)-任务二-设备安全配置篇(1)">
+<meta property="og:url" content="https://tripse.github.io/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(1)/index.html">
+<meta property="og:site_name" content="Tripse Blog">
+<meta property="og:description" content="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇（1）  author：leadlife time：2022&#x2F;11&#x2F;30 微信：Tripse 知识星球：LeadlifeSec QQ：482949203 QQ群：775454947  在我们的 《2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置》篇，我">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://security-note.oss-cn-hangzhou.aliyuncs.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0.png">
+<meta property="article:published_time" content="2022-12-03T06:21:52.041Z">
+<meta property="article:modified_time" content="2022-12-03T06:23:39.858Z">
+<meta property="article:author" content="Tripse">
+<meta property="article:tag" content="信息安全管理与评估">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://security-note.oss-cn-hangzhou.aliyuncs.com/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0.png"><link rel="shortcut icon" href="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg"><link rel="canonical" href="https://tripse.github.io/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(1)/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2021-技能大赛-信息安全管理与评估-DCN 设备总结(中)-任务二-设备安全配置篇(1)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-03 14:23:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/icon.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Tripse Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">2021-技能大赛-信息安全管理与评估-DCN 设备总结(中)-任务二-设备安全配置篇(1)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-03T06:21:52.041Z" title="发表于 2022-12-03 14:21:52">2022-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-03T06:23:39.858Z" title="更新于 2022-12-03 14:23:39">2022-12-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0/">信息安全管理与评估</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="2021-技能大赛-信息安全管理与评估-DCN 设备总结(中)-任务二-设备安全配置篇(1)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="2021-技能大赛-信息安全管理与评估-DCN-设备总结-中-任务二-设备安全配置篇（1）"><a href="#2021-技能大赛-信息安全管理与评估-DCN-设备总结-中-任务二-设备安全配置篇（1）" class="headerlink" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇（1）"></a>2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇（1）</h1><hr>
+<blockquote>
+<p>author：leadlife</p>
+<p>time：2022&#x2F;11&#x2F;30</p>
+<p>微信：Tripse</p>
+<p>知识星球：LeadlifeSec</p>
+<p>QQ：482949203</p>
+<p>QQ群：775454947</p>
+</blockquote>
+<p>在我们的 《2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置》篇，我们已经完成了基本的网络路由配置，其中 VLAN 以及对应的 IP 地址配置 and 一些端口 access trunk 配置，下面让我带领代价进入设备安全配置，一题一题，将题目从原理刨析给各位同学</p>
+<h2 id="任务二操作"><a href="#任务二操作" class="headerlink" title="任务二操作"></a>任务二操作</h2><h3 id="Telnet-Banner"><a href="#Telnet-Banner" class="headerlink" title="Telnet Banner"></a>Telnet Banner</h3><h4 id="类似题型"><a href="#类似题型" class="headerlink" title="类似题型"></a>类似题型</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RS和WS开启telnet登录功能，配置使用telnet方式登录终端界面前显示如下授权信息：“WARNING!!! Authorised access only, all of your done will be recorded! Disconnected IMMEDIATELY <span class="keyword">if</span> you are not an authorised user! Otherwise, we retain the right to pursue the legal responsibility”</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li><p>关于 Telnet Banner 在比赛中，我们需要注意;</p>
+</li>
+<li><p>&#x3D;&#x3D;DCWS-6028 也就是 AC 和 CS6200 三层交换机的 banner 配置不同；&#x3D;&#x3D;</p>
+</li>
+</ul>
+<h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><table>
+<thead>
+<tr>
+<th align="left">name</th>
+<th align="left">code</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">DCWS-6028</td>
+<td align="left">DCWS-6028(config)#banner motd ?                                  LINE  用户字符串, &lt;1-100&gt;字符</td>
+</tr>
+<tr>
+<td align="left">DC6200</td>
+<td align="left">RS(config)#banner login ?                                                      LINE  用户字符串, &lt;1-512&gt;字符</td>
+</tr>
+</tbody></table>
+<h4 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h4><h5 id="RS"><a href="#RS" class="headerlink" title="RS"></a>RS</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RS(config)#banner login WARNING!!! Authorised access only, all of your done will be recorded! Disconnected IMMEDIATELY <span class="keyword">if</span> you are not an authorised user! Otherwise, we retain the right to pursue the legal responsibility</span><br></pre></td></tr></table></figure>
+
+<h5 id="WS"><a href="#WS" class="headerlink" title="WS"></a>WS</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WS(config)#banner motd WARNING!!! Authorised access only, all of your done will be recorded! Disconnected IMMEDIATELY <span class="keyword">if</span> you are not an authorised user! Otherwise, we retain the right to pursue the legal responsibility</span><br><span class="line">%banner <span class="type">string</span> length should be no more than <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="SNMP-网管系统-信息上报"><a href="#SNMP-网管系统-信息上报" class="headerlink" title="SNMP 网管系统-信息上报"></a>SNMP 网管系统-信息上报</h3><p>所谓网管系统也就是 SNMP 服务，我们要操作的命令也就是 &#x3D;&#x3D;snmp-server&#x3D;&#x3D;</p>
+<p>若有关 MAC 地址绑定操作 MAC 即可</p>
+<h4 id="类似题型-1"><a href="#类似题型-1" class="headerlink" title="类似题型"></a>类似题型</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">总部部署了一套网管系统实现对核心RS进行管理，网管系统IP为：<span class="number">172.16</span><span class="number">.100</span><span class="number">.21</span>，读团体值为：ABC2024，版本为V2C， RS Trap信息实时上报网管，当MAC地址发生变化时，也要立即通知网管发生的变化，每<span class="number">35</span>s发送一次；</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点-1"><a href="#注意点-1" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li><p>开启 snmp-server 服务</p>
+</li>
+<li><p>开启 snmp-erver traps 功能</p>
+</li>
+<li><p>需求中有 MAC 地址</p>
+</li>
+</ul>
+<h4 id="命令-1"><a href="#命令-1" class="headerlink" title="命令"></a>命令</h4><table>
+<thead>
+<tr>
+<th align="left">code</th>
+<th align="left">explanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">snmp-server securityip</td>
+<td align="left">设置安全IP地址</td>
+</tr>
+<tr>
+<td align="left">snmp-server host</td>
+<td align="left">设置接受Trap的管理端</td>
+</tr>
+<tr>
+<td align="left">snmp-server trap-source</td>
+<td align="left">设置SNMP Trap-source IP地址</td>
+</tr>
+<tr>
+<td align="left">snmp-server community</td>
+<td align="left">设置团体值</td>
+</tr>
+<tr>
+<td align="left">snmp-server enable traps mac-notification</td>
+<td align="left">开启 MAC 地址变化信息通告网管</td>
+</tr>
+<tr>
+<td align="left">mac-address-table violation-trap-interval 35</td>
+<td align="left">操作发送trap信息的时间间隔</td>
+</tr>
+</tbody></table>
+<h4 id="操作-1"><a href="#操作-1" class="headerlink" title="操作"></a>操作</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">RS#config terminal </span><br><span class="line">RS(config)#snmp-server enable </span><br><span class="line">RS(config)#snmp-server enable traps </span><br><span class="line">RS(config)#snmp-server securityip <span class="number">172.16</span><span class="number">.100</span><span class="number">.21</span></span><br><span class="line">RS(config)#snmp-server host <span class="number">172.16</span><span class="number">.100</span><span class="number">.21</span> v2c ABC2024 </span><br><span class="line">RS(config)#snmp-server trap-source <span class="number">172.16</span><span class="number">.100</span><span class="number">.21</span></span><br><span class="line">RS(config)#snmp-server community ro ABC2024 </span><br><span class="line">RS(config)#snmp-server enable traps mac-notification </span><br><span class="line">RS(config)#mac-address-table violation-trap-interval <span class="number">35</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="流量往返转发-Netlog-跨网段三层镜像"><a href="#流量往返转发-Netlog-跨网段三层镜像" class="headerlink" title="流量往返转发 Netlog 跨网段三层镜像"></a>流量往返转发 Netlog 跨网段三层镜像</h3><h4 id="类似题目"><a href="#类似题目" class="headerlink" title="类似题目"></a>类似题目</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RS出口往返流量发送给NETLOG，由NETLOG对收到的数据进行用户所要求的分析</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点-2"><a href="#注意点-2" class="headerlink" title="注意点"></a>注意点</h4><p>我们从题目中可以分析出两个问题；</p>
+<p>1：RS 与 NETLOG 并不直连</p>
+<p>2：要求出口往返流量均转发至 NETLOG</p>
+<p>分析以下，我们可以确定两个要点；</p>
+<ul>
+<li>RS 必须拥有与 Netlog 网段 IP 对应的 VLAN，这里为 VLAN 51，由 WS 与 Netlog 通信</li>
+<li>RS 的出口往返流量驻留在 E1&#x2F;0&#x2F;1</li>
+</ul>
+<h4 id="命令-2"><a href="#命令-2" class="headerlink" title="命令"></a>命令</h4><table>
+<thead>
+<tr>
+<th align="left">code</th>
+<th align="left">exlanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">remote-span</td>
+<td align="left">配置远程镜像Vlan</td>
+</tr>
+<tr>
+<td align="left">monitor session 1 source</td>
+<td align="left">配置远程镜像源端源端口，以将数据收集并好转发</td>
+</tr>
+<tr>
+<td align="left">monitor session 1 remote vlan 51</td>
+<td align="left">设置远程镜像给谁</td>
+</tr>
+<tr>
+<td align="left">monitor session 1 reflector-port interface e1&#x2F;0&#x2F;24</td>
+<td align="left">将一个不用的端口用于反射 E1&#x2F;0&#x2F;1 流量到 vlan 51 网段再基于 WS 转发给 NETLOG</td>
+</tr>
+</tbody></table>
+<h4 id="操作-2"><a href="#操作-2" class="headerlink" title="操作"></a>操作</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RS(config)#vlan <span class="number">51</span></span><br><span class="line">RS(config-vlan51)#remote-span </span><br><span class="line">RS(config-vlan51)#exit</span><br><span class="line">RS(config)#monitor session <span class="number">1</span> source <span class="keyword">interface</span> ethernet <span class="number">1</span>/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">RS(config)#monitor session <span class="number">1</span> remote vlan <span class="number">51</span>                  </span><br><span class="line">RS(config)#monitor session <span class="number">1</span> reflector-port <span class="keyword">interface</span> e1/<span class="number">0</span>/<span class="number">24</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="二层隔离-环路检测-DHCP-monitor-监听防欺骗-ARP-防欺骗"><a href="#二层隔离-环路检测-DHCP-monitor-监听防欺骗-ARP-防欺骗" class="headerlink" title="二层隔离-环路检测- DHCP monitor 监听防欺骗-ARP 防欺骗"></a>二层隔离-环路检测- DHCP monitor 监听防欺骗-ARP 防欺骗</h3><h4 id="类似题型-2"><a href="#类似题型-2" class="headerlink" title="类似题型"></a>类似题型</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.	对RS上VLAN40开启以下安全机制：业务内部终端相互二层隔离，启用环路检测，环路检测的时间间隔为10s，发现环路以后关闭该端口，恢复时间为 30分钟； 如私设DHCP服务器关闭该端口;防止ARP欺骗攻击；</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点-3"><a href="#注意点-3" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li><p>我们需要对指定的安全机制，做发现故障后的动作</p>
+</li>
+<li><p>需要注意 DHCP snooping 在 E1&#x2F;0&#x2F;1 口需要 Trust 以发现恶意的私设 DHCP</p>
+</li>
+</ul>
+<h4 id="命令-3"><a href="#命令-3" class="headerlink" title="命令"></a>命令</h4><table>
+<thead>
+<tr>
+<th align="left">code</th>
+<th align="left">explanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">isolate-port</td>
+<td align="left">设置隔离端口属性</td>
+</tr>
+<tr>
+<td align="left">loopback-detection</td>
+<td align="left">启用环路检测、并设置环路检测时间间隔</td>
+</tr>
+<tr>
+<td align="left">loopback-detection specified-vlan 40</td>
+<td align="left">绑定 VLAN 40 流量以操作安全机制</td>
+</tr>
+<tr>
+<td align="left">loopback-detection control</td>
+<td align="left">操作发现环路后的动作</td>
+</tr>
+<tr>
+<td align="left">loopback-detection control-recovery timeout 1800</td>
+<td align="left">操作关闭端口后的回复时间</td>
+</tr>
+<tr>
+<td align="left">ip dhcp snooping binding arp</td>
+<td align="left">防止 ARP 欺骗</td>
+</tr>
+<tr>
+<td align="left">ip dhcp snooping trust</td>
+<td align="left">设置只信任该端口转发的 DHCP 报文，避免恶意 DHCP</td>
+</tr>
+<tr>
+<td align="left">ip dhcp snooping binding user-control</td>
+<td align="left">启动DHCP Snooping绑定user功能、操作所属 VLNA 40 业务的流量</td>
+</tr>
+</tbody></table>
+<h4 id="操作-3"><a href="#操作-3" class="headerlink" title="操作"></a>操作</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">RS(config)#vlan <span class="number">40</span></span><br><span class="line">RS(config-vlan40)#isolate-port apply l2 </span><br><span class="line">RS(config-vlan40)#exit </span><br><span class="line">RS(config)#loopback-detection interval-time <span class="number">10</span> <span class="number">10</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">RS(config)#<span class="type">int</span> e1/<span class="number">0</span>/<span class="number">4</span>                                                </span><br><span class="line">RS(config-<span class="keyword">if</span>-ethernet1/<span class="number">0</span>/<span class="number">4</span>)#loopback-detection specified-vlan <span class="number">40</span>             </span><br><span class="line">RS(config-<span class="keyword">if</span>-ethernet1/<span class="number">0</span>/<span class="number">4</span>)#loopback-detection control shutdown </span><br><span class="line">RS(config-<span class="keyword">if</span>-ethernet1/<span class="number">0</span>/<span class="number">4</span>)#exit</span><br><span class="line">RS(config)#loopback-detection control-recovery timeout <span class="number">1800</span></span><br><span class="line"></span><br><span class="line">RS(config)#ip dhcp snooping enable </span><br><span class="line">RS(config)#ip dhcp snooping binding enable </span><br><span class="line">RS(config)#ip dhcp snooping binding arp</span><br><span class="line">RS(config)#<span class="type">int</span> e1/<span class="number">0</span>/<span class="number">1</span></span><br><span class="line">RS(config-<span class="keyword">if</span>-ethernet1/<span class="number">0</span>/<span class="number">1</span>)#ip dhcp snooping trust </span><br><span class="line">RS(config-<span class="keyword">if</span>-ethernet1/<span class="number">0</span>/<span class="number">1</span>)#exit               </span><br><span class="line">RS(config)#<span class="type">int</span> e1/<span class="number">0</span>/<span class="number">4</span></span><br><span class="line">RS(config-<span class="keyword">if</span>-ethernet1/<span class="number">0</span>/<span class="number">4</span>)#ip dhcp snooping binding user-control </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="FW-操作业务流量访问-INTERNET-安全防护-RS-VRF-VPN"><a href="#FW-操作业务流量访问-INTERNET-安全防护-RS-VRF-VPN" class="headerlink" title="FW 操作业务流量访问 INTERNET 安全防护-RS VRF VPN"></a>FW 操作业务流量访问 INTERNET 安全防护-RS VRF VPN</h3><h4 id="类似题型-3"><a href="#类似题型-3" class="headerlink" title="类似题型"></a>类似题型</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">配置使总部VLAN10，30，40业务的用户访问INTERNET往返数据流都经过FW进行最严格的安全防护; RS使用相关VPN技术，模拟INTERNET ,VPN名称为INTERNET地址为218.5.18.2；</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点-4"><a href="#注意点-4" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li>我们在操作 FW 的相应匹配流量的地址博时需要对其部署相应的放行策略</li>
+<li>&#x3D;&#x3D;VRF VPN 基于 Loopback 口转发&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;由于基于最严格的安全防护，我们需要防止恶意路由配置静态路由&#x3D;&#x3D;</li>
+<li>&#x3D;&#x3D;开机攻击防护&#x3D;&#x3D;</li>
+</ul>
+<h4 id="命令-4"><a href="#命令-4" class="headerlink" title="命令"></a>命令</h4><table>
+<thead>
+<tr>
+<th align="left">code</th>
+<th align="left">explanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ip vrf INTERNET</td>
+<td align="left">创建 VPN路由&#x2F;转发实例</td>
+</tr>
+<tr>
+<td align="left">ip vrf forwarding INTERNET</td>
+<td align="left">转发实例</td>
+</tr>
+</tbody></table>
+<h4 id="操作-4"><a href="#操作-4" class="headerlink" title="操作"></a>操作</h4><h5 id="FW"><a href="#FW" class="headerlink" title="FW"></a>FW</h5><h6 id="创建业务地址薄"><a href="#创建业务地址薄" class="headerlink" title="创建业务地址薄"></a>创建业务地址薄</h6><p>右上角的用户对象 → 地址薄</p>
+<p><img src="https://img-blog.csdnimg.cn/95c2ce7516e64f34af1a4b31806e4dcd.png" alt="请添加图片描述"></p>
+<h6 id="创建-INTERNET-地址薄"><a href="#创建-INTERNET-地址薄" class="headerlink" title="创建 INTERNET 地址薄"></a>创建 INTERNET 地址薄</h6><p>&#x3D;&#x3D;右上角的用户对象 → 地址薄&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/d08b2edbd7c0467c1857da5df36d0cf4.png" alt="FW-4"></p>
+<h6 id="创建相应放行策略"><a href="#创建相应放行策略" class="headerlink" title="创建相应放行策略"></a>创建相应放行策略</h6><p>&#x3D;&#x3D;安全 → 策略&#x3D;&#x3D;</p>
+<ul>
+<li><p>题目要求最严格的防护，但没说具体操作，为此我们需要考虑的是：相应业务 VLAN 流向 INTERNET 的流量安全性  &#x3D;&#x3D;避免 INTERNET 可直接访问内网的业务&#x3D;&#x3D;</p>
+</li>
+<li><p>所以可分析出策略部署应该为 untrust 流向 trust，INTERNET 流向业务 VLAN，那么相反 业务流量向 INTERNET 也必须操作</p>
+</li>
+<li></li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/496647697afbbb19f16336ba24ce5f4c.png" alt="FW-5"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/fdd1f41a74daf8056048cdfe81d6f2ca.png" alt="FW-6"></p>
+<h6 id="启用静态路由以防止恶意动态路由"><a href="#启用静态路由以防止恶意动态路由" class="headerlink" title="启用静态路由以防止恶意动态路由"></a>启用静态路由以防止恶意动态路由</h6><p><img src="https://img-blog.csdnimg.cn/img_convert/9bc15492539296f6c2d98a1b8c015a0c.png" alt="FW-29"></p>
+<h6 id="开启攻击防护"><a href="#开启攻击防护" class="headerlink" title="开启攻击防护"></a>开启攻击防护</h6><p>&#x3D;&#x3D;该截图并不完整，勾选全部启用即可&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/0e7ef4c91a64cefa56280b38010aff0a.png" alt="FW-30"></p>
+<p>最后策略截图因如此</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/17c8842d1b5c2ea06501b21941eca628.png" alt="FW-7"></p>
+<h5 id="RS-1"><a href="#RS-1" class="headerlink" title="RS"></a>RS</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">RS&gt;enable </span><br><span class="line">RS#</span><br><span class="line">RS#config terminal </span><br><span class="line">RS(config)#ip vrf INTERNET	</span><br><span class="line">RS(config)#<span class="type">int</span> l1</span><br><span class="line">RS(config-<span class="keyword">if</span>-loopback1)#ip vrf forwarding INTERNET</span><br><span class="line">RS(config-<span class="keyword">if</span>-loopback1)#ip address <span class="number">218.5</span><span class="number">.18</span><span class="number">.2</span> <span class="number">255.255</span><span class="number">.255</span><span class="number">.255</span></span><br><span class="line">RS(config-<span class="keyword">if</span>-loopback1)#no shutdown </span><br><span class="line">RS(config-<span class="keyword">if</span>-loopback1)#end</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="RIPng-路由-IPv6-协议通信"><a href="#RIPng-路由-IPv6-协议通信" class="headerlink" title="RIPng 路由 IPv6 协议通信"></a>RIPng 路由 IPv6 协议通信</h3><h4 id="类似题目-1"><a href="#类似题目-1" class="headerlink" title="类似题目"></a>类似题目</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">WS与RS之间配置RIPng,是VLAN30与VLAN50可以通过IPv6通信；</span><br><span class="line">IPv6业务地址规划如下，其它IPv6地址自行规划：</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>业务</strong></th>
+<th><strong>IPV6****地址</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VLAN30</td>
+<td>2001:30::254&#x2F;64</td>
+</tr>
+<tr>
+<td>VLAN50</td>
+<td>2001:50::254&#x2F;64</td>
+</tr>
+</tbody></table>
+<h4 id="注意点-5"><a href="#注意点-5" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li><p>WS 和 RS 之间在网络配置规划中，没有要求 RS 开启 vlan 30 和 50 ，这里就需要开启然后操作 ipv6 路由；</p>
+</li>
+<li><p>然后我们想想，以前的 RIP 路由，是不是都需要宣告邻居路由？</p>
+</li>
+<li><p>那么这里就同时需要将 &#x3D;&#x3D;vlan 100 加入到该 IPv6 的业务规划中与 WS 通信，以维持 vlan 30 vlan 50 之间的 ipv6 业务通信&#x3D;&#x3D;</p>
+</li>
+<li><p>记住，所有宣告给予 IPv6 协议</p>
+</li>
+</ul>
+<h4 id="操作-5"><a href="#操作-5" class="headerlink" title="操作"></a>操作</h4><h5 id="RS-2"><a href="#RS-2" class="headerlink" title="RS"></a>RS</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">RS#config terminal </span><br><span class="line">RS(config)#ipv6 enable </span><br><span class="line">RS(config)#router ipv6 rip </span><br><span class="line"></span><br><span class="line">RS(config-router)#exit</span><br><span class="line">RS(config)#<span class="type">int</span> vlan <span class="number">100</span></span><br><span class="line">RS(config-<span class="keyword">if</span>-vlan100)#ipv6 address <span class="number">2001</span>:<span class="number">100</span>::<span class="number">254</span>/<span class="number">64</span></span><br><span class="line">RS(config-<span class="keyword">if</span>-vlan100)#no shutdown  </span><br><span class="line">RS(config-<span class="keyword">if</span>-vlan100)#ipv6 router rip </span><br><span class="line">RS(config-<span class="keyword">if</span>-vlan100)#end</span><br></pre></td></tr></table></figure>
+
+<h5 id="WS-1"><a href="#WS-1" class="headerlink" title="WS"></a>WS</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">WS(config)#ipv6 enable</span><br><span class="line">WS(config)#router ipv6 rip </span><br><span class="line"></span><br><span class="line">WS(config)#<span class="type">int</span> vlan <span class="number">30</span></span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan30)#ipv6 address <span class="number">2001</span>:<span class="number">30</span>::<span class="number">254</span>/<span class="number">64</span></span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan30)#no shutdown </span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan30)#ipv6 router rip</span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan30)#<span class="type">int</span> vlan <span class="number">50</span></span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan50)#ipv6 address <span class="number">2001</span>:<span class="number">50</span>::<span class="number">254</span>/<span class="number">64</span></span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan50)#no shutdown </span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan50)#ipv6 router rip</span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan50)#<span class="type">int</span> vlan <span class="number">100</span></span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan100)#ipv6 address <span class="number">2001</span>:<span class="number">100</span>::<span class="number">1</span>/<span class="number">64</span> </span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan100)#no shutdown </span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan100)#ipv6 router rip</span><br></pre></td></tr></table></figure>
+
+<p>最后 RS 结果应能 ping6 通信这三个地址</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">RS#ping6 <span class="number">2001</span>:<span class="number">30</span>::<span class="number">254</span>   </span><br><span class="line">Sending <span class="number">5</span> <span class="number">56</span>-<span class="type">byte</span> ICMP Echos to <span class="number">2001</span>:<span class="number">30</span>::<span class="number">254</span>, timeout is <span class="number">2</span> seconds.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is <span class="number">100</span> percent (<span class="number">5</span>/<span class="number">5</span>), round-trip min/avg/max = <span class="number">0</span>/<span class="number">0</span>/<span class="number">0</span> ms</span><br><span class="line"></span><br><span class="line">RS#ping6 <span class="number">2001</span>:<span class="number">50</span>::<span class="number">254</span>   </span><br><span class="line">Sending <span class="number">5</span> <span class="number">56</span>-<span class="type">byte</span> ICMP Echos to <span class="number">2001</span>:<span class="number">50</span>::<span class="number">254</span>, timeout is <span class="number">2</span> seconds.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is <span class="number">100</span> percent (<span class="number">5</span>/<span class="number">5</span>), round-trip min/avg/max = <span class="number">0</span>/<span class="number">3</span>/<span class="number">16</span> ms</span><br><span class="line"></span><br><span class="line">RS#ping6 <span class="number">2001</span>:<span class="number">100</span>::<span class="number">1</span></span><br><span class="line">Sending <span class="number">5</span> <span class="number">56</span>-<span class="type">byte</span> ICMP Echos to <span class="number">2001</span>:<span class="number">100</span>::<span class="number">1</span>, timeout is <span class="number">2</span> seconds.</span><br><span class="line">!!!!!</span><br><span class="line">Success rate is <span class="number">100</span> percent (<span class="number">5</span>/<span class="number">5</span>), round-trip min/avg/max = <span class="number">0</span>/<span class="number">10</span>/<span class="number">50</span> ms</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="OSPF-MD5-安全认证"><a href="#OSPF-MD5-安全认证" class="headerlink" title="OSPF MD5 安全认证"></a>OSPF MD5 安全认证</h3><h4 id="类似题型-4"><a href="#类似题型-4" class="headerlink" title="类似题型"></a>类似题型</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FW、RS、WS之间配置OSPF area <span class="number">0</span> 开启基于链路的MD5认证，密钥自定义</span><br></pre></td></tr></table></figure>
+
+<p>FW 与 WS 之间连接，在 DCN 设备上需要额外上 vlan，因为设备特定如此，以上我们在前期任务一已经完成不在赘述：</p>
+<table>
+<thead>
+<tr>
+<th>ETH0&#x2F;1</th>
+<th>9.0.0.1&#x2F;30  （Trust安全域）</th>
+<th>WS</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ETH0&#x2F;2</td>
+<td>10.0.0.1&#x2F;30  （untrust安全域）</td>
+<td>WS</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="注意点-6"><a href="#注意点-6" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li>需要注意在 OSPF 协议中声明发送 MD5 消息 key 验证</li>
+<li>&#x3D;&#x3D;关于 FW 的 OSPF 操作要注意先声明 router-id&#x3D;&#x3D;</li>
+</ul>
+<h4 id="命令-5"><a href="#命令-5" class="headerlink" title="命令"></a>命令</h4><table>
+<thead>
+<tr>
+<th align="left">code</th>
+<th align="left">explanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ip vrouter trust-vr</td>
+<td align="left">FW 进入路由配置模式</td>
+</tr>
+<tr>
+<td align="left">ip ospf authentication message-digest</td>
+<td align="left">操作 OSPF 认证模式为消息</td>
+</tr>
+<tr>
+<td align="left">ip ospf message-digest-key 1 md5 admin</td>
+<td align="left">操作 OSPF 认证模式为 MD5 Hash admin</td>
+</tr>
+</tbody></table>
+<h4 id="操作-6"><a href="#操作-6" class="headerlink" title="操作"></a>操作</h4><h5 id="FW-1"><a href="#FW-1" class="headerlink" title="FW"></a>FW</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">FW(config)# ip vrouter trust-vr </span><br><span class="line">FW(config-vrouter)# router ospf </span><br><span class="line">FW(config-router)# router-id <span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">FW(config-router)# network <span class="number">9.0</span><span class="number">.0</span><span class="number">.1</span>/<span class="number">30</span> area <span class="number">0</span></span><br><span class="line">FW(config-router)# network <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>/<span class="number">30</span> area <span class="number">0</span></span><br><span class="line">FW(config-router)# network <span class="number">11.0</span><span class="number">.0</span><span class="number">.1</span>/<span class="number">30</span> area <span class="number">0</span></span><br><span class="line">FW(config-router)# network <span class="number">12.0</span><span class="number">.0</span><span class="number">.1</span>/<span class="number">30</span> area <span class="number">0</span></span><br><span class="line">FW(config-router)# network <span class="number">218.5</span><span class="number">.18</span><span class="number">.1</span>/<span class="number">27</span> area <span class="number">0</span></span><br><span class="line">FW(config-router)# area <span class="number">0</span> authentication message-digest</span><br><span class="line"> </span><br><span class="line">FW(config-router)# exit</span><br><span class="line">FW(config-vrouter)# exit  </span><br><span class="line">FW(config)# <span class="type">int</span> aggregate1<span class="number">.9</span></span><br><span class="line">FW(config-<span class="keyword">if</span>-agg1<span class="number">.9</span>)# ip ospf authentication message-digest </span><br><span class="line">FW(config-<span class="keyword">if</span>-agg1<span class="number">.9</span>)# ip ospf message-digest-key <span class="number">1</span> md5 admin</span><br><span class="line">FW(config)# <span class="type">int</span> aggregate1<span class="number">.91</span></span><br><span class="line">FW(config-<span class="keyword">if</span>-agg1<span class="number">.91</span>)# ip ospf authentication message-digest </span><br><span class="line">FW(config-<span class="keyword">if</span>-agg1<span class="number">.91</span>)# ip ospf message-digest-key <span class="number">1</span> md5 admin</span><br></pre></td></tr></table></figure>
+
+<p>这里谈及以下，可直接再 agg1 中配置 OSPF MD5 认证，也可组播  OSPF 的 LSA 认证信息</p>
+<h5 id="RS-3"><a href="#RS-3" class="headerlink" title="RS"></a>RS</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CS6200<span class="number">-28</span>X-EI&gt;enable </span><br><span class="line">CS6200<span class="number">-28</span>X-EI#config terminal                  </span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config)#router ospf <span class="number">1</span></span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-router)#network <span class="number">192.168</span><span class="number">.100</span><span class="number">.0</span>/<span class="number">24</span> area <span class="number">0</span></span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-router)#network <span class="number">192.168</span><span class="number">.101</span><span class="number">.0</span>/<span class="number">24</span> area <span class="number">0</span></span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-router)#network <span class="number">172.16</span><span class="number">.40</span><span class="number">.1</span>/<span class="number">26</span> area <span class="number">0</span></span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-router)#area <span class="number">0</span> authentication message-digest</span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-router)#exit</span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config)#<span class="type">int</span> vlan <span class="number">100</span></span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-<span class="keyword">if</span>-vlan100)#</span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-<span class="keyword">if</span>-vlan100)#ip ospf authentication message-digest </span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-<span class="keyword">if</span>-vlan100)#ip ospf message-digest-key <span class="number">1</span> md5 admin</span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-<span class="keyword">if</span>-vlan100)#exit</span><br></pre></td></tr></table></figure>
+
+<h5 id="WS-2"><a href="#WS-2" class="headerlink" title="WS"></a>WS</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">WS(config)#router ospf <span class="number">1</span></span><br><span class="line">WS(config-router)#network <span class="number">10.0</span><span class="number">.0</span><span class="number">.0</span>/<span class="number">30</span> area <span class="number">0</span></span><br><span class="line">WS(config-router)#network <span class="number">172.16</span><span class="number">.100</span><span class="number">.0</span>/<span class="number">24</span> area <span class="number">0</span></span><br><span class="line">WS(config-router)#network <span class="number">172.16</span><span class="number">.10</span><span class="number">.1</span>/<span class="number">24</span> area <span class="number">0</span></span><br><span class="line">WS(config-router)#network <span class="number">172.16</span><span class="number">.20</span><span class="number">.1</span>/<span class="number">25</span> area <span class="number">0</span></span><br><span class="line">WS(config-router)#network <span class="number">172.16</span><span class="number">.30</span><span class="number">.1</span>/<span class="number">26</span> area <span class="number">0</span></span><br><span class="line">WS(config-router)#network <span class="number">172.16</span><span class="number">.50</span><span class="number">.1</span>/<span class="number">26</span> area <span class="number">0</span></span><br><span class="line">WS(config-router)#network <span class="number">192.168</span><span class="number">.100</span><span class="number">.0</span>/<span class="number">24</span> area <span class="number">0</span></span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-router)#area <span class="number">0</span> authentication message-digest</span><br><span class="line">WS(config-router)#exit    </span><br><span class="line">WS(config)#<span class="type">int</span> vlan <span class="number">9</span></span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan9)#ip ospf authentication message-digest </span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan9)#ip ospf message-digest-key <span class="number">1</span> md5 admin</span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan9)#exit</span><br><span class="line">WS(config)#<span class="type">int</span> vlan <span class="number">100</span></span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan100)#ip ospf authentication message-digest </span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan100)#ip ospf message-digest-key <span class="number">1</span> md5 admin</span><br><span class="line">WS(config-<span class="keyword">if</span>-vlan100)#exit</span><br></pre></td></tr></table></figure>
+
+<p>操作完成后 WS 应有两个 OSPF 邻居</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">WS(config)#show ip ospf neighbor </span><br><span class="line"></span><br><span class="line">OSPF process <span class="number">1</span>:</span><br><span class="line">Neighbor ID     Pri   State           Dead Time   Address         Interface</span><br><span class="line"><span class="number">1.1</span><span class="number">.1</span><span class="number">.1</span>           <span class="number">1</span>   Full/DR         <span class="number">00</span>:<span class="number">00</span>:<span class="number">37</span>    <span class="number">10.0</span><span class="number">.0</span><span class="number">.1</span>        Vlan91</span><br><span class="line"><span class="number">192.168</span><span class="number">.101</span><span class="number">.1</span>     <span class="number">1</span>   Full/DR         <span class="number">00</span>:<span class="number">00</span>:<span class="number">35</span>    <span class="number">192.168</span><span class="number">.100</span><span class="number">.254</span> Vlan100</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="限制吞吐量-收发数据大小"><a href="#限制吞吐量-收发数据大小" class="headerlink" title="限制吞吐量-收发数据大小"></a>限制吞吐量-收发数据大小</h3><h4 id="类似题型-5"><a href="#类似题型-5" class="headerlink" title="类似题型"></a>类似题型</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为了有效减低能耗，要求每天晚上<span class="number">20</span>:<span class="number">00</span>到早上<span class="number">07</span>:<span class="number">00</span>把RS端口指示灯全部关闭；如果RS的<span class="number">11</span>端口的收包速率超过<span class="number">30000</span>则关闭此端口，恢复时间<span class="number">5</span>分钟，并每隔<span class="number">10</span>分钟对端口的速率进行统计；为了更好地提高数据转发的性能，RS交换中的数据包大小指定为<span class="number">1600</span>字节；</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点-7"><a href="#注意点-7" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li><p>物理要求貌似无法满足(自动关闭指示灯)</p>
+</li>
+<li><p>rate 速率</p>
+</li>
+<li><p>sflow 恢复</p>
+</li>
+<li><p>mtu 指定数据包交换大小</p>
+</li>
+</ul>
+<p>一般数据包如果设置 mtu，若超过阈值则会分块传输，这是 Cisco 的一种特定，DCN 目前未知</p>
+<h4 id="命令-6"><a href="#命令-6" class="headerlink" title="命令"></a>命令</h4><table>
+<thead>
+<tr>
+<th align="left">code</th>
+<th align="left">explanation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">rate-violation</td>
+<td align="left">操作端口收发速率与违背限定速率后执行的动作</td>
+</tr>
+<tr>
+<td align="left">rate-violation control shutdown recovery 300</td>
+<td align="left">操作违背执行动作</td>
+</tr>
+<tr>
+<td align="left">sflow counter-interval</td>
+<td align="left">sflow 协议统计速率</td>
+</tr>
+</tbody></table>
+<h4 id="操作-7"><a href="#操作-7" class="headerlink" title="操作"></a>操作</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CS6200<span class="number">-28</span>X-EI(config)#<span class="type">int</span> e1/<span class="number">0</span>/<span class="number">11</span></span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-<span class="keyword">if</span>-ethernet1/<span class="number">0</span>/<span class="number">11</span>)#rate-violation all <span class="number">30000</span></span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-<span class="keyword">if</span>-ethernet1/<span class="number">0</span>/<span class="number">11</span>)#rate-violation control shutdown recovery <span class="number">300</span> </span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-<span class="keyword">if</span>-ethernet1/<span class="number">0</span>/<span class="number">11</span>)#sflow counter-interval <span class="number">120</span></span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config-<span class="keyword">if</span>-ethernet1/<span class="number">0</span>/<span class="number">11</span>)#exit</span><br><span class="line">CS6200<span class="number">-28</span>X-EI(config)#mtu <span class="number">1600</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="FW-防火墙安全区域管理-manage"><a href="#FW-防火墙安全区域管理-manage" class="headerlink" title="FW 防火墙安全区域管理-manage"></a>FW 防火墙安全区域管理-manage</h3><h4 id="类似题型-6"><a href="#类似题型-6" class="headerlink" title="类似题型"></a>类似题型</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为实现对防火墙的安全管理，在防火墙FW的Trust安全域开启PING,HTTP，SNMP功能，Untrust安全域开启SSH、HTTPS功能</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点-8"><a href="#注意点-8" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li><p>关于这题的注意点在与所有的 Trust 区域开启相应功能</p>
+</li>
+<li><p>所有 Untrust 开启相应功能即可</p>
+</li>
+<li><p>&#x3D;&#x3D;需要注意的是操作 trust 区域后，我们要对应相应功能进入 Web GUI 界面 HTTP&#x3D;&#x3D;</p>
+</li>
+</ul>
+<h4 id="操作-8"><a href="#操作-8" class="headerlink" title="操作"></a>操作</h4><p>勾选 trust 过滤掉其他非 trust 区域添加 manage 功能即可</p>
+<p>untrust 操作一致，不多赘述</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/ff3a301a4b68665761c2aedbdd49b72a.png" alt="FW-8"></p>
+<h3 id="FW-复用公网-NAT-转换"><a href="#FW-复用公网-NAT-转换" class="headerlink" title="FW 复用公网-NAT 转换"></a>FW 复用公网-NAT 转换</h3><h4 id="类似题型-7"><a href="#类似题型-7" class="headerlink" title="类似题型"></a>类似题型</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">总部 VLAN 业务用户通过防火墙访问 Internet 时，复用公网IP： <span class="number">218.5</span><span class="number">.18</span><span class="number">.9</span>、<span class="number">218.5</span><span class="number">.18</span><span class="number">.10</span>；</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点-9"><a href="#注意点-9" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li><p>需要创建公网地址池薄</p>
+</li>
+<li><p>然后创建地址池：”总部所有业务 VLAN 用户”，将所属 vlan IP 段加入该地址薄</p>
+</li>
+<li><p>&#x3D;&#x3D;然后创建 NAT– 采用端口复用的方式：指定 IP，动态 IP 多对一&#x3D;&#x3D;</p>
+</li>
+<li><p>&#x3D;&#x3D;是业务用户的 VLAN，防火或者 RS 的通信 VLAN 不要加进去&#x3D;&#x3D; <code>vlan 10 20 30 40 50</code></p>
+</li>
+</ul>
+<h4 id="操作-9"><a href="#操作-9" class="headerlink" title="操作"></a>操作</h4><h5 id="添加业务-VLAN-地址池"><a href="#添加业务-VLAN-地址池" class="headerlink" title="添加业务 VLAN 地址池"></a>添加业务 VLAN 地址池</h5><h5 id=""><a href="#" class="headerlink" title=""></a></h5><p><img src="https://img-blog.csdnimg.cn/img_convert/159b643fcf317ae79592d4761b8aba2f.png" alt="FW-10"></p>
+<h4 id="操作源-NAT-配置"><a href="#操作源-NAT-配置" class="headerlink" title="操作源 NAT 配置"></a>操作源 NAT 配置</h4><p><img src="https://img-blog.csdnimg.cn/img_convert/97f369d278058725d129fe0625c4a82b.png" alt="FW-11"></p>
+<h3 id="FW-SSL-链接认证"><a href="#FW-SSL-链接认证" class="headerlink" title="FW SSL 链接认证"></a>FW SSL 链接认证</h3><h4 id="类似题型-8"><a href="#类似题型-8" class="headerlink" title="类似题型"></a>类似题型</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">远程移动办公用户通过专线方式接入总部网络，在防火墙FW上配置，采用SSL方式实现仅允许对内网VLAN <span class="number">30</span>的访问，用户名密码均为ABC2021，地址池参见地址表；</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点-10"><a href="#注意点-10" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li>新建本地用户</li>
+<li>新建 SSL 向导</li>
+<li>接入用户-直接添加就行</li>
+<li>然后配置 “隧道接口和地址池”，”地址池”</li>
+<li>操作隧道路由配置</li>
+<li>添加 vlan 30 用户地址博</li>
+<li>然后配置策略，将 Vlan 30 数据指向 SSL tunnel 隧道</li>
+</ul>
+<h4 id="操作-10"><a href="#操作-10" class="headerlink" title="操作"></a>操作</h4><p>操作点：</p>
+<p>&#x3D;&#x3D;右上角对象用户 → 本地用户 → 新建本地用户&#x3D;&#x3D;</p>
+<p>&#x3D;&#x3D;配置 → 网络 → SSL VPN&#x3D;&#x3D;</p>
+<h5 id="新建本地用户"><a href="#新建本地用户" class="headerlink" title="新建本地用户"></a>新建本地用户</h5><p><img src="https://img-blog.csdnimg.cn/img_convert/140337fac78571e8144e9821aa665e2d.png" alt="FW-12"></p>
+<h5 id="操作-SSL-VPN"><a href="#操作-SSL-VPN" class="headerlink" title="操作 SSL VPN"></a>操作 SSL VPN</h5><p><img src="https://img-blog.csdnimg.cn/img_convert/18c9120bc994446b33deb665559b7514.png" alt="FW-13"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/98a4be6172a68185cbbc76a79352ada1.png" alt="FW-14"></p>
+<p>&#x3D;&#x3D;关于这题正确操作应当是如下，但是我对其做出一种质疑，既然我们已经在 FW 上完成的端口聚合的操作，我们应当在aggregate1&#x3D;&#x3D; 配置为出接口，并非如下，但是如果题目要求一致，可以先取消掉端口聚合再截图</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/a773b6ac771f554b5fb3409ca0b20f87.png" alt="FW-15"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/ca4f1412b307c44c4a6f91140c24558d.png" alt="FW-16"></p>
+<p>&#x3D;&#x3D;新建隧道接口&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/1ce6a44e4ceb7c71676337799ecf8b56.png" alt="FW-17"></p>
+<p>&#x3D;&#x3D;建立 SSL VPN 地址池&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/ca02626a9e9d4d8b706d11f313006a00.png" alt="FW-18"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/14c023a54fd802d075f01b97b54b88f8.png" alt="FW-19"></p>
+<h5 id="操作策略"><a href="#操作策略" class="headerlink" title="操作策略"></a>操作策略</h5><p>&#x3D;&#x3D;新建 VLAN 30 相关用户地址池&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/65d14fb742c2223e1a2c508806684880.png" alt="FW-20"></p>
+<p>&#x3D;&#x3D;操作 VPN tunnel 策略，允许流量通过&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/d732dfbff13e1e5b45858edd7199d4bd.png" alt="FW-21"></p>
+<h3 id="FW-Qos-流量控制-关键字过滤"><a href="#FW-Qos-流量控制-关键字过滤" class="headerlink" title="FW Qos 流量控制-关键字过滤"></a>FW Qos 流量控制-关键字过滤</h3><h4 id="类似题型-9"><a href="#类似题型-9" class="headerlink" title="类似题型"></a>类似题型</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为了保证带宽的合理使用，通过流量管理功能将引流组应用数据流，上行最小带宽设置为<span class="number">2</span>M，下行最大带宽设置为<span class="number">4</span>M;为净化上网环境，要求在防火墙FW做相关配置，禁止无线用户周一至周五工作时间<span class="number">9</span>：<span class="number">00</span><span class="number">-18</span>：<span class="number">00</span>的邮件内容中含有“病毒”、“赌博”的内容，且记录日志；</span><br></pre></td></tr></table></figure>
+
+<h4 id="注意点-11"><a href="#注意点-11" class="headerlink" title="注意点"></a>注意点</h4><ul>
+<li>QOS流量设置 <code>流量管理 &gt;&gt; 应用 Qos 配置</code></li>
+<li>无线用户地址池配置</li>
+<li>时间表配置</li>
+<li>关键字类别配置</li>
+<li>过滤配置</li>
+</ul>
+<h4 id="操作-11"><a href="#操作-11" class="headerlink" title="操作"></a>操作</h4><h5 id="Qos-限制通往互联网-INTERNET-流量"><a href="#Qos-限制通往互联网-INTERNET-流量" class="headerlink" title="Qos 限制通往互联网 INTERNET 流量"></a>Qos 限制通往互联网 INTERNET 流量</h5><p><img src="https://img-blog.csdnimg.cn/img_convert/9f034d197f257698db30b0649248b7dc.png" alt="FW-22"></p>
+<h5 id="过滤无线用户的邮件关键字内容"><a href="#过滤无线用户的邮件关键字内容" class="headerlink" title="过滤无线用户的邮件关键字内容"></a>过滤无线用户的邮件关键字内容</h5><p>&#x3D;&#x3D;先创建无线用户地址薄&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/8efb30743f187b0b112d64aaea627074.png" alt="FW-23"></p>
+<p>&#x3D;&#x3D;创建时间表 对象用户 → 时间表&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/8bfcfc3bc9ee4d381295ba447235e377.png" alt="FW-24"></p>
+<p>&#x3D;&#x3D;控制 → 网页关键字&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/3085d54b72530244959a6176c6400f4c.png" alt="FW-25"></p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/2cf09a394b4d130994a3b304ae52211f.png" alt="FW-26"></p>
+<p>&#x3D;&#x3D;控制 → 邮件过滤&#x3D;&#x3D;</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/97289246e896789f7266b12bcae7251c.png" alt="FW-27"></p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/zhishi.jpg" alt="zhishi"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Tripse/">Tripse</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tripse.github.io/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(1)/">https://tripse.github.io/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(1)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tripse.github.io" target="_blank">Tripse Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0/">信息安全管理与评估</a></div><div class="post_share"><div class="social-share" data-image="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://security-note.oss-cn-hangzhou.aliyuncs.com/2.jpg" target="_blank"><img class="post-qr-code-img" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/2.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://security-note.oss-cn-hangzhou.aliyuncs.com/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(2)/"><img class="prev-cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)</div></div></a></div><div class="next-post pull-right"><a href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8A)-%E4%BB%BB%E5%8A%A1%E4%B8%80%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E7%AF%87/"><img class="next-cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置篇</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/09/18/2019-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93/" title="2019-技能大赛-信息安全管理与评估-DCN 设备总结"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-18</div><div class="title">2019-技能大赛-信息安全管理与评估-DCN 设备总结</div></div></a></div><div><a href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8A)-%E4%BB%BB%E5%8A%A1%E4%B8%80%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置篇"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-03</div><div class="title">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置篇</div></div></a></div><div><a href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8B)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E6%97%A0%E7%BA%BF%E4%B8%8E%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87-%E7%BB%88%E7%BB%93%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-03</div><div class="title">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇</div></div></a></div><div><a href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(2)/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-03</div><div class="title">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Tripse</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tripse/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Tripse/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:leadlifeLD@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/324542959?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="iconfont  icon-bilibili"></i></a><a class="social-icon" href="https://jq.qq.com/?_wv=1027&amp;k=dF6M99TL" target="_blank" title="QQ群"><i class="iconfont  icon-QQ"></i></a><a class="social-icon" href="https://tripse.github.io/wechat.html" target="_blank" title=""><i class="iconfont  icon-wechat-fill"></i></a><a class="social-icon" href="https://tieba.baidu.com/f?ie=utf-8&amp;kw=leadlife" target="_blank" title=""><i class="iconfont  icon-social-tieba"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN-%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93-%E4%B8%AD-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87%EF%BC%881%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇（1）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E4%BA%8C%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">任务二操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Telnet-Banner"><span class="toc-number">1.1.1.</span> <span class="toc-text">Telnet Banner</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E5%9E%8B"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">类似题型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#RS"><span class="toc-number">1.1.1.4.1.</span> <span class="toc-text">RS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#WS"><span class="toc-number">1.1.1.4.2.</span> <span class="toc-text">WS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SNMP-%E7%BD%91%E7%AE%A1%E7%B3%BB%E7%BB%9F-%E4%BF%A1%E6%81%AF%E4%B8%8A%E6%8A%A5"><span class="toc-number">1.1.2.</span> <span class="toc-text">SNMP 网管系统-信息上报</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E5%9E%8B-1"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">类似题型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9-1"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4-1"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-1"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%BE%80%E8%BF%94%E8%BD%AC%E5%8F%91-Netlog-%E8%B7%A8%E7%BD%91%E6%AE%B5%E4%B8%89%E5%B1%82%E9%95%9C%E5%83%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">流量往返转发 Netlog 跨网段三层镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">类似题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9-2"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4-2"><span class="toc-number">1.1.3.3.</span> <span class="toc-text">命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-2"><span class="toc-number">1.1.3.4.</span> <span class="toc-text">操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%B1%82%E9%9A%94%E7%A6%BB-%E7%8E%AF%E8%B7%AF%E6%A3%80%E6%B5%8B-DHCP-monitor-%E7%9B%91%E5%90%AC%E9%98%B2%E6%AC%BA%E9%AA%97-ARP-%E9%98%B2%E6%AC%BA%E9%AA%97"><span class="toc-number">1.1.4.</span> <span class="toc-text">二层隔离-环路检测- DHCP monitor 监听防欺骗-ARP 防欺骗</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E5%9E%8B-2"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">类似题型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9-3"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4-3"><span class="toc-number">1.1.4.3.</span> <span class="toc-text">命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-3"><span class="toc-number">1.1.4.4.</span> <span class="toc-text">操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FW-%E6%93%8D%E4%BD%9C%E4%B8%9A%E5%8A%A1%E6%B5%81%E9%87%8F%E8%AE%BF%E9%97%AE-INTERNET-%E5%AE%89%E5%85%A8%E9%98%B2%E6%8A%A4-RS-VRF-VPN"><span class="toc-number">1.1.5.</span> <span class="toc-text">FW 操作业务流量访问 INTERNET 安全防护-RS VRF VPN</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E5%9E%8B-3"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">类似题型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9-4"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4-4"><span class="toc-number">1.1.5.3.</span> <span class="toc-text">命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-4"><span class="toc-number">1.1.5.4.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#FW"><span class="toc-number">1.1.5.4.1.</span> <span class="toc-text">FW</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%9A%E5%8A%A1%E5%9C%B0%E5%9D%80%E8%96%84"><span class="toc-number">1.1.5.4.1.1.</span> <span class="toc-text">创建业务地址薄</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-INTERNET-%E5%9C%B0%E5%9D%80%E8%96%84"><span class="toc-number">1.1.5.4.1.2.</span> <span class="toc-text">创建 INTERNET 地址薄</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E7%9B%B8%E5%BA%94%E6%94%BE%E8%A1%8C%E7%AD%96%E7%95%A5"><span class="toc-number">1.1.5.4.1.3.</span> <span class="toc-text">创建相应放行策略</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%90%AF%E7%94%A8%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%E4%BB%A5%E9%98%B2%E6%AD%A2%E6%81%B6%E6%84%8F%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1"><span class="toc-number">1.1.5.4.1.4.</span> <span class="toc-text">启用静态路由以防止恶意动态路由</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%BC%80%E5%90%AF%E6%94%BB%E5%87%BB%E9%98%B2%E6%8A%A4"><span class="toc-number">1.1.5.4.1.5.</span> <span class="toc-text">开启攻击防护</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RS-1"><span class="toc-number">1.1.5.4.2.</span> <span class="toc-text">RS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RIPng-%E8%B7%AF%E7%94%B1-IPv6-%E5%8D%8F%E8%AE%AE%E9%80%9A%E4%BF%A1"><span class="toc-number">1.1.6.</span> <span class="toc-text">RIPng 路由 IPv6 协议通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E7%9B%AE-1"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">类似题目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9-5"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-5"><span class="toc-number">1.1.6.3.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#RS-2"><span class="toc-number">1.1.6.3.1.</span> <span class="toc-text">RS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#WS-1"><span class="toc-number">1.1.6.3.2.</span> <span class="toc-text">WS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF-MD5-%E5%AE%89%E5%85%A8%E8%AE%A4%E8%AF%81"><span class="toc-number">1.1.7.</span> <span class="toc-text">OSPF MD5 安全认证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E5%9E%8B-4"><span class="toc-number">1.1.7.1.</span> <span class="toc-text">类似题型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9-6"><span class="toc-number">1.1.7.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4-5"><span class="toc-number">1.1.7.3.</span> <span class="toc-text">命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-6"><span class="toc-number">1.1.7.4.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#FW-1"><span class="toc-number">1.1.7.4.1.</span> <span class="toc-text">FW</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#RS-3"><span class="toc-number">1.1.7.4.2.</span> <span class="toc-text">RS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#WS-2"><span class="toc-number">1.1.7.4.3.</span> <span class="toc-text">WS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E5%88%B6%E5%90%9E%E5%90%90%E9%87%8F-%E6%94%B6%E5%8F%91%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F"><span class="toc-number">1.1.8.</span> <span class="toc-text">限制吞吐量-收发数据大小</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E5%9E%8B-5"><span class="toc-number">1.1.8.1.</span> <span class="toc-text">类似题型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9-7"><span class="toc-number">1.1.8.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4-6"><span class="toc-number">1.1.8.3.</span> <span class="toc-text">命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-7"><span class="toc-number">1.1.8.4.</span> <span class="toc-text">操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FW-%E9%98%B2%E7%81%AB%E5%A2%99%E5%AE%89%E5%85%A8%E5%8C%BA%E5%9F%9F%E7%AE%A1%E7%90%86-manage"><span class="toc-number">1.1.9.</span> <span class="toc-text">FW 防火墙安全区域管理-manage</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E5%9E%8B-6"><span class="toc-number">1.1.9.1.</span> <span class="toc-text">类似题型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9-8"><span class="toc-number">1.1.9.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-8"><span class="toc-number">1.1.9.3.</span> <span class="toc-text">操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FW-%E5%A4%8D%E7%94%A8%E5%85%AC%E7%BD%91-NAT-%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.1.10.</span> <span class="toc-text">FW 复用公网-NAT 转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E5%9E%8B-7"><span class="toc-number">1.1.10.1.</span> <span class="toc-text">类似题型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9-9"><span class="toc-number">1.1.10.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-9"><span class="toc-number">1.1.10.3.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E4%B8%9A%E5%8A%A1-VLAN-%E5%9C%B0%E5%9D%80%E6%B1%A0"><span class="toc-number">1.1.10.3.1.</span> <span class="toc-text">添加业务 VLAN 地址池</span></a></li><li class="toc-item toc-level-5"><a class="toc-link"><span class="toc-number">1.1.10.3.2.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%BA%90-NAT-%E9%85%8D%E7%BD%AE"><span class="toc-number">1.1.10.4.</span> <span class="toc-text">操作源 NAT 配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FW-SSL-%E9%93%BE%E6%8E%A5%E8%AE%A4%E8%AF%81"><span class="toc-number">1.1.11.</span> <span class="toc-text">FW SSL 链接认证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E5%9E%8B-8"><span class="toc-number">1.1.11.1.</span> <span class="toc-text">类似题型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9-10"><span class="toc-number">1.1.11.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-10"><span class="toc-number">1.1.11.3.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E6%9C%AC%E5%9C%B0%E7%94%A8%E6%88%B7"><span class="toc-number">1.1.11.3.1.</span> <span class="toc-text">新建本地用户</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-SSL-VPN"><span class="toc-number">1.1.11.3.2.</span> <span class="toc-text">操作 SSL VPN</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E7%AD%96%E7%95%A5"><span class="toc-number">1.1.11.3.3.</span> <span class="toc-text">操作策略</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FW-Qos-%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6-%E5%85%B3%E9%94%AE%E5%AD%97%E8%BF%87%E6%BB%A4"><span class="toc-number">1.1.12.</span> <span class="toc-text">FW Qos 流量控制-关键字过滤</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B1%BB%E4%BC%BC%E9%A2%98%E5%9E%8B-9"><span class="toc-number">1.1.12.1.</span> <span class="toc-text">类似题型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E7%82%B9-11"><span class="toc-number">1.1.12.2.</span> <span class="toc-text">注意点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C-11"><span class="toc-number">1.1.12.3.</span> <span class="toc-text">操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Qos-%E9%99%90%E5%88%B6%E9%80%9A%E5%BE%80%E4%BA%92%E8%81%94%E7%BD%91-INTERNET-%E6%B5%81%E9%87%8F"><span class="toc-number">1.1.12.3.1.</span> <span class="toc-text">Qos 限制通往互联网 INTERNET 流量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E6%97%A0%E7%BA%BF%E7%94%A8%E6%88%B7%E7%9A%84%E9%82%AE%E4%BB%B6%E5%85%B3%E9%94%AE%E5%AD%97%E5%86%85%E5%AE%B9"><span class="toc-number">1.1.12.3.2.</span> <span class="toc-text">过滤无线用户的邮件关键字内容</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/06/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-6%EF%BC%89/" title="每日安全资讯（2022-12-06）"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-06）"/></a><div class="content"><a class="title" href="/2022/12/06/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-6%EF%BC%89/" title="每日安全资讯（2022-12-06）">每日安全资讯（2022-12-06）</a><time datetime="2022-12-06T09:00:33.803Z" title="发表于 2022-12-06 17:00:33">2022-12-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/04/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-4%EF%BC%89/" title="每日安全资讯（2022-12-04）"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-04）"/></a><div class="content"><a class="title" href="/2022/12/04/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-4%EF%BC%89/" title="每日安全资讯（2022-12-04）">每日安全资讯（2022-12-04）</a><time datetime="2022-12-04T06:41:14.071Z" title="发表于 2022-12-04 14:41:14">2022-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/03/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-3%EF%BC%89/" title="每日安全资讯（2022-12-03）"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-03）"/></a><div class="content"><a class="title" href="/2022/12/03/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-3%EF%BC%89/" title="每日安全资讯（2022-12-03）">每日安全资讯（2022-12-03）</a><time datetime="2022-12-03T06:36:18.708Z" title="发表于 2022-12-03 14:36:18">2022-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8B)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E6%97%A0%E7%BA%BF%E4%B8%8E%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87-%E7%BB%88%E7%BB%93%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇"/></a><div class="content"><a class="title" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8B)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E6%97%A0%E7%BA%BF%E4%B8%8E%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87-%E7%BB%88%E7%BB%93%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇</a><time datetime="2022-12-03T06:25:26.576Z" title="发表于 2022-12-03 14:25:26">2022-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(2)/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)"/></a><div class="content"><a class="title" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(2)/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)</a><time datetime="2022-12-03T06:24:00.328Z" title="发表于 2022-12-03 14:24:00">2022-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By Tripse</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

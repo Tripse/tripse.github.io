@@ -1,0 +1,505 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>每日安全资讯（2022-12-01） | Tripse Blog</title><meta name="keywords" content="安全新闻 安全技术资讯"><meta name="author" content="Tripse"><meta name="copyright" content="Tripse"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="每日安全资讯（2022-12-01）  author：leadlife time：2022&#x2F;12&#x2F;01 微信：Tripse 知识星球：LeadlifeSec QQ：482949203 QQ群：775454947   机智的程序员小熊 正则表达式速查卡   安全客-有思想的安全新媒体 CVE-2022-42889 Apache Commons Text RCE漏洞分析 Group">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日安全资讯（2022-12-01）">
+<meta property="og:url" content="https://tripse.github.io/2022/12/01/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-1%EF%BC%89/index.html">
+<meta property="og:site_name" content="Tripse Blog">
+<meta property="og:description" content="每日安全资讯（2022-12-01）  author：leadlife time：2022&#x2F;12&#x2F;01 微信：Tripse 知识星球：LeadlifeSec QQ：482949203 QQ群：775454947   机智的程序员小熊 正则表达式速查卡   安全客-有思想的安全新媒体 CVE-2022-42889 Apache Commons Text RCE漏洞分析 Group">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg">
+<meta property="article:published_time" content="2022-12-01T04:37:20.463Z">
+<meta property="article:modified_time" content="2022-12-02T08:31:46.551Z">
+<meta property="article:author" content="Tripse">
+<meta property="article:tag" content="CyberNews">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg"><link rel="shortcut icon" href="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg"><link rel="canonical" href="https://tripse.github.io/2022/12/01/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-1%EF%BC%89/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '每日安全资讯（2022-12-01）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-12-02 16:31:46'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/icon.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Tripse Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">每日安全资讯（2022-12-01）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-12-01T04:37:20.463Z" title="发表于 2022-12-01 12:37:20">2022-12-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-12-02T08:31:46.551Z" title="更新于 2022-12-02 16:31:46">2022-12-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CyberNews/">CyberNews</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="每日安全资讯（2022-12-01）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="每日安全资讯（2022-12-01）"><a href="#每日安全资讯（2022-12-01）" class="headerlink" title="每日安全资讯（2022-12-01）"></a>每日安全资讯（2022-12-01）</h1><hr>
+<blockquote>
+<p>author：leadlife</p>
+<p>time：2022&#x2F;12&#x2F;01</p>
+<p>微信：Tripse</p>
+<p>知识星球：LeadlifeSec</p>
+<p>QQ：482949203</p>
+<p>QQ群：775454947</p>
+</blockquote>
+<ul>
+<li>机智的程序员小熊<ul>
+<li><a target="_blank" rel="noopener" href="https://coding3min.com/2137.html">正则表达式速查卡</a></li>
+</ul>
+</li>
+<li>安全客-有思想的安全新媒体<ul>
+<li><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/283625">CVE-2022-42889 Apache Commons Text RCE漏洞分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/283903">Group-IB研究显示：世界杯球迷正在遭遇网络诈骗浪潮</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/283897">安全专家披露亚马逊网络服务AWS AppSync漏洞</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/283892">北约举行年度“网络联盟”演习</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/283872">安全团队发现Crysis勒索软件变种Wiki在韩国活动</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/283877">数字安全观察每周简报【行业动态篇】2022.11.17-2022.11.23</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/283869">宏碁电脑存在驱动程序漏洞，启动过程中可部署恶意软件</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/283864">消灭0Day?Google Project Zero呼吁Android加快修复漏洞</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/283810">540万Twitter账号信息在黑客论坛免费共享</a></li>
+</ul>
+</li>
+<li>paper - Last paper<ul>
+<li><a target="_blank" rel="noopener" href="https://paper.seebug.org/2030/">com 组件的从 0 到 1</a></li>
+<li><a target="_blank" rel="noopener" href="https://paper.seebug.org/2029/">在 Android 中开发 eBPF 程序学习总结（三）</a></li>
+</ul>
+</li>
+<li>Recent Commits to cve:main<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/trickest/cve/commit/de07c8514c3663cf9820521774447e95b7432569">Update Wed Nov 30 18:39:02 UTC 2022</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/trickest/cve/commit/28e5ee78771750c5ccfbca0dc81bea83c1bf1335">Update Wed Nov 30 13:02:12 UTC 2022</a></li>
+</ul>
+</li>
+<li>Microsoft Security Blog<ul>
+<li><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/security/blog/2022/11/30/implementing-zero-trust-access-to-business-data-on-byod-with-trustd-mtd-and-microsoft-entra/">Implementing Zero Trust access to business data on BYOD with Trustd MTD and Microsoft Entra</a></li>
+</ul>
+</li>
+<li>跳跳糖 - 安全与分享社区<ul>
+<li><a target="_blank" rel="noopener" href="https://tttang.com/archive/1854/">关于HackerOne上Grafana、jolokia、Flink攻击手法的学习</a></li>
+</ul>
+</li>
+<li>安全通告<ul>
+<li><a target="_blank" rel="noopener" href="//www.huawei.com/cn/psirt/security-advisories/2022/huawei-sa-iaviahcw-21a3acd8-cn">安全通告 - 涉及华为某款儿童手表的授权不当类漏洞</a></li>
+</ul>
+</li>
+<li>SecWiki News<ul>
+<li><a target="_blank" rel="noopener" href="http://www.sec-wiki.com/?2022-11-30">SecWiki News 2022-11-30 Review</a></li>
+</ul>
+</li>
+<li>Trustwave Blog<ul>
+<li><a target="_blank" rel="noopener" href="https://www.trustwave.com/en-us/resources/blogs/trustwave-blog/operational-technology-security-needs-an-urgent-upgrade/">Operational Technology Security Needs an Urgent Upgrade</a></li>
+</ul>
+</li>
+<li>嘶吼 RoarTalk – 回归最本质的信息安全,互联网安全新媒体,4hou.com<ul>
+<li><a target="_blank" rel="noopener" href="https://www.4hou.com/posts/jJ44">天际友盟完成B轮亿元级融资，致力打造亚洲第一的数字风险防护平台</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.4hou.com/posts/03zN">热门报税软件将消费者个人数据发回给Meta和谷歌</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.4hou.com/posts/7JKB">不管你隐藏的多深，总有一款应用可以探测到你的网络行踪</a></li>
+</ul>
+</li>
+<li>bunnie’s blog<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bunniestudios.com/blog/?p=6598">Name that Ware November, 2022</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bunniestudios.com/blog/?p=6595">Winner, Name that Ware October 2022</a></li>
+</ul>
+</li>
+<li>先知安全技术社区<ul>
+<li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11907">某代码审计SQL注入篇</a></li>
+<li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11904">初涉JWT</a></li>
+</ul>
+</li>
+<li>Vulnerabilities and Threat Research – Qualys Security Blog<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.qualys.com/category/vulnerabilities-threat-research">Race condition in snap-confine’s must_mkdir_and_open_with_perms() (CVE-2022-3328)</a></li>
+</ul>
+</li>
+<li>安全脉搏<ul>
+<li><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/192610.html">flare-on之anode解题技巧</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/192592.html">某比特币勒索病毒分析</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/192580.html">工具 | 高度自定义Burp插件log4j2burpscanner</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/192575.html">众至科技漏洞通告 | Atlassian Crowd and Crowd Data Center 权限绕过漏洞；Bitbucket Server and Data Center 远程命令执行漏洞</a></li>
+</ul>
+</li>
+<li>先知安全技术社区<ul>
+<li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11907">某代码审计SQL注入篇</a></li>
+<li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11904">初涉JWT</a></li>
+</ul>
+</li>
+<li>Sploitus.com Exploits RSS Feed<ul>
+<li><a target="_blank" rel="noopener" href="https://sploitus.com/exploit?id=PACKETSTORM:170063&utm_source=rss&utm_medium=rss">Hirschmann (Belden) BAT-C2 8.8.1.0R8 Command Injection exploit</a></li>
+<li><a target="_blank" rel="noopener" href="https://sploitus.com/exploit?id=PACKETSTORM:170064&utm_source=rss&utm_medium=rss">OX App Suite 7.10.6 Cross Site Scripting &#x2F; SSRF &#x2F; Resource Consumption exploit</a></li>
+<li><a target="_blank" rel="noopener" href="https://sploitus.com/exploit?id=PACKETSTORM:170066&utm_source=rss&utm_medium=rss">Microsoft Exchange ProxyNotShell Remote Code Execution exploit</a></li>
+<li><a target="_blank" rel="noopener" href="https://sploitus.com/exploit?id=D2CE9456-EDAA-59FB-AD0F-78E18BE9A0D0&utm_source=rss&utm_medium=rss">Exploit for Missing Authentication for Critical Function in F5 Big-Ip Access Policy Manager exploit</a></li>
+<li><a target="_blank" rel="noopener" href="https://sploitus.com/exploit?id=482216E0-2505-544A-BAB2-B45CD9752515&utm_source=rss&utm_medium=rss">Exploit for Cross-site Scripting in Helpsystems Cobalt Strike exploit</a></li>
+</ul>
+</li>
+<li>NowSecure<ul>
+<li><a target="_blank" rel="noopener" href="https://www.nowsecure.com/blog/2022/11/30/mobile-banking-finance-apps-fall-short-on-security/">Mobile Banking &amp; Finance Apps Fall Short on Security</a></li>
+</ul>
+</li>
+<li>unSafe.sh - 不安全<ul>
+<li><a target="_blank" rel="noopener" href="https://buaq.net/go-137955.html">D4TA-HUNTER - GUI Osint Framework With Kali Linux</a></li>
+<li><a target="_blank" rel="noopener" href="https://buaq.net/go-137952.html">My Latest XSS Finding, Explained To Beginners | Bug Bounty</a></li>
+<li><a target="_blank" rel="noopener" href="https://buaq.net/go-137953.html">SentinelOne Integrates With Amazon Security Lake to Power Cloud Investigations</a></li>
+<li><a target="_blank" rel="noopener" href="https://buaq.net/go-137950.html">Protecting Critical Infrastructure: A To The Point Cybersecurity Podcast Recap</a></li>
+<li><a target="_blank" rel="noopener" href="https://buaq.net/go-137946.html">CyRC Vulnerability Advisory: Remote code execution vulnerabilities in mouse and keyboard apps</a></li>
+<li><a target="_blank" rel="noopener" href="https://buaq.net/go-137931.html">一文详解 | 移动应用合规平台，让个人信息的安全保护 “合规” 且 “有效”</a></li>
+<li><a target="_blank" rel="noopener" href="https://buaq.net/go-137945.html">Mobile Banking &amp; Finance Apps Fall Short on Security</a></li>
+<li><a target="_blank" rel="noopener" href="https://buaq.net/go-138009.html">FreeBuf早报 | 北约举行年度“网络联盟”演习；我国未成年网民规模达1.91亿</a></li>
+<li><a target="_blank" rel="noopener" href="https://buaq.net/go-137924.html">HelloGitHub 第 80 期</a></li>
+</ul>
+</li>
+<li>Forcepoint<ul>
+<li><a target="_blank" rel="noopener" href="https://www.forcepoint.com/blog/insights/protecting-critical-infrastructure-to-the-point-cybersecurity-podcast">Protecting Critical Infrastructure: A To The Point Cybersecurity Podcast Recap</a></li>
+</ul>
+</li>
+<li>Real-time communications security on Communication Breakdown - Real-Time Communications Security<ul>
+<li><a target="_blank" rel="noopener" href="https://www.rtcsec.com/newsletter/2022-11-rtcsec-news/">DDoS simulation tutorial, WebRTC IP leak and vulnerable RTC libraries</a></li>
+</ul>
+</li>
+<li>SentinelOne<ul>
+<li><a target="_blank" rel="noopener" href="https://www.sentinelone.com/blog/sentinelone-integrates-with-amazon-security-lake-to-power-cloud-investigations/">SentinelOne Integrates With Amazon Security Lake to Power Cloud Investigations</a></li>
+</ul>
+</li>
+<li>Application Security Blog<ul>
+<li><a target="_blank" rel="noopener" href="https://www.synopsys.com/blogs/software-security/cyrc-advisory-remote-code-execution-vulnerabilities-mouse-keyboard-apps/">CyRC Vulnerability Advisory: Remote code execution vulnerabilities in mouse and keyboard apps</a></li>
+</ul>
+</li>
+<li>CFC4N的博客<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnxct.com/profiling-without-frame-pointers-using-ebpf/">使用eBPF实现基于DWARF的堆栈遍历</a></li>
+</ul>
+</li>
+<li>blog.avast.com EN<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.avast.com/chaos-machine-book-review">Book review: How has social media rewired our minds?</a></li>
+</ul>
+</li>
+<li>PortSwigger Blog<ul>
+<li><a target="_blank" rel="noopener" href="https://portswigger.net/blog/the-burp-challenge">The Burp challenge</a></li>
+</ul>
+</li>
+<li>学习路<ul>
+<li><a target="_blank" rel="noopener" href="https://4ra1n.love/post/8L1agW2eY/">12月1日</a></li>
+</ul>
+</li>
+<li>Intigriti<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.intigriti.com/2022/11/30/bug-bytes-183-learning-reflecting-and-hacking/">Bug Bytes #183 – Learning, reflecting and hacking</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.intigriti.com/2022/11/30/computer-security-day-2022-cybersecurity-tips-to-help-keep-you-safe-online/">Computer Security Day 2022 – Cybersecurity tips to help keep you safe online</a></li>
+</ul>
+</li>
+<li>The Daily Swig | Cybersecurity news and views<ul>
+<li><a target="_blank" rel="noopener" href="https://portswigger.net/daily-swig/tailscale-vpn-nodes-vulnerable-to-dns-rebinding-rce">Tailscale VPN nodes vulnerable to DNS rebinding, RCE</a></li>
+</ul>
+</li>
+<li>PortSwigger Blog<ul>
+<li><a target="_blank" rel="noopener" href="https://portswigger.net/blog/the-burp-challenge">The Burp challenge</a></li>
+</ul>
+</li>
+<li>SAP Blogs<ul>
+<li><a target="_blank" rel="noopener" href="https://blogs.sap.com/2022/11/30/embedded-analytics-with-abap-cloud-a-brief-overview-part-1/">Embedded Analytics with ABAP Cloud – A Brief Overview (Part 1)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.sap.com/2022/11/30/whats-new-in-sap-convergent-charging-2022-fps0/">What’s new in SAP Convergent Charging 2022 FPS0</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.sap.com/2022/11/30/sap-stammtisch-plus-gurgaon-the-second-meetup/">SAP Stammtisch Plus Gurgaon – The second meetup</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.sap.com/2022/11/30/sap-community-call-evolution-of-integration-with-integration-black-belts/">SAP Community Call:  Evolution of Integration with Integration Black Belts</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.sap.com/2022/11/30/sap-and-siemens-the-journey-so-far-and-how-it-will-increase-customer-value/">SAP and Siemens: The journey so far and how it will increase customer value</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.sap.com/2022/11/30/how-to-get-answers-to-your-sap-btp-questions-sap-champion-spotlight-murali-shanmugham/">How to Get Answers to Your SAP BTP Questions | SAP Champion Spotlight, Murali Shanmugham</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.sap.com/2022/11/30/sap-university-alliances-6th-global-knowledge-sharing-session/">SAP University Alliances 6th Global Knowledge Sharing Session</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.sap.com/2022/11/30/threadcontext-in-sap-cloud-sdk-version-4/">ThreadContext in  SAP Cloud SDK Version 4</a></li>
+<li><a target="_blank" rel="noopener" href="https://blogs.sap.com/2022/11/30/approval-process-for-upload-prices-in-sales-from-template-based-spreadsheet/">Approval Process for Upload Prices in Sales from template-based spreadsheet</a></li>
+</ul>
+</li>
+<li>博客园 - nice_0e3<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/nice0e3/p/16940294.html">C# 委托 - nice_0e3</a></li>
+</ul>
+</li>
+<li>Black Hills Information Security<ul>
+<li><a target="_blank" rel="noopener" href="https://www.blackhillsinfosec.com/talkin-about-infosec-news-11-30-2022/">Talkin’ About Infosec News – 11&#x2F;30&#x2F;2022</a></li>
+</ul>
+</li>
+<li>KitPloit - PenTest &amp; Hacking Tools<ul>
+<li><a target="_blank" rel="noopener" href="http://www.kitploit.com/2022/11/d4ta-hunter-gui-osint-framework-with.html">D4TA-HUNTER - GUI Osint Framework With Kali Linux</a></li>
+</ul>
+</li>
+<li>绿盟科技技术博客<ul>
+<li><a target="_blank" rel="noopener" href="http://blog.nsfocus.net/monthlyreport11/">绿盟威胁情报月报-2022年11月</a></li>
+</ul>
+</li>
+<li>Data Breach<ul>
+<li><a target="_blank" rel="noopener" href="https://securityaffairs.co/wordpress/139091/data-breach/enc-security-data-leak-sony-lexar.html">ENC Security, the encryption provider for Sony and Lexar, leaked sensitive data for over a year</a></li>
+</ul>
+</li>
+<li>Files ≈ Packet Storm<ul>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170070/CVE-2022-41413.tgz">perfSONAR 4.4.5 Cross Site Request Forgery</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170069/CVE-2022-41412.tgz">perfSONAR 4.4.4 Open Proxy &#x2F; Relay</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170068/clamav-1.0.0.tar.gz">Clam AntiVirus Toolkit 1.0.0</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170067/suricata-6.0.9.tar.gz">Suricata IDPE 6.0.9</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170066/exchange_proxynotshell_rce.rb.txt">Microsoft Exchange ProxyNotShell Remote Code Execution</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170065/idcm41145749-bypass.txt">Intel Data Center Manager 4.1.1.45749 Authentication Bypass &#x2F; Spoofing</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170064/OXUIB-1654.txt">OX App Suite 7.10.6 Cross Site Scripting &#x2F; SSRF &#x2F; Resource Consumption</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170063/hirschmannbatc2-exec.txt">Hirschmann (Belden) BAT-C2 8.8.1.0R8 Command Injection</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170062/USN-5718-2.txt">Ubuntu Security Notice USN-5718-2</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170061/USN-5750-1.txt">Ubuntu Security Notice USN-5750-1</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170060/USN-5749-1.txt">Ubuntu Security Notice USN-5749-1</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170059/USN-5728-3.txt">Ubuntu Security Notice USN-5728-3</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170058/RHSA-2022-8669-01.txt">Red Hat Security Advisory 2022-8669-01</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170057/RHSA-2022-8679-01.txt">Red Hat Security Advisory 2022-8679-01</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170056/RHSA-2022-8673-01.txt">Red Hat Security Advisory 2022-8673-01</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170055/RHSA-2022-8680-01.txt">Red Hat Security Advisory 2022-8680-01</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170054/USN-5745-2.txt">Ubuntu Security Notice USN-5745-2</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170053/USN-5748-1.txt">Ubuntu Security Notice USN-5748-1</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170052/RHSA-2022-8686-01.txt">Red Hat Security Advisory 2022-8686-01</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170051/RHSA-2022-8685-01.txt">Red Hat Security Advisory 2022-8685-01</a></li>
+<li><a target="_blank" rel="noopener" href="https://packetstormsecurity.com/files/170050/USN-5689-2.txt">Ubuntu Security Notice USN-5689-2</a></li>
+</ul>
+</li>
+<li>Checkmarx.com<ul>
+<li><a target="_blank" rel="noopener" href="https://checkmarx.com/press-releases/checkmarx-fortifies-executive-team-with-appointment-of-amit-daniel-as-global-chief-marketing-officer/">Checkmarx Fortifies Executive Team with Appointment of Amit Daniel as Global Chief Marketing Officer</a></li>
+<li><a target="_blank" rel="noopener" href="https://checkmarx.com/blog/kpis-in-qa-and-appsec-you-call-it-bug-we-call-it-vulnerability/">KPIs in QA and AppSec – You Call it Bug, We Call it Vulnerability</a></li>
+</ul>
+</li>
+<li>FreeBuf网络安全行业门户<ul>
+<li><a target="_blank" rel="noopener" href="https://www.freebuf.com/news/351212.html">FreeBuf早报 | 北约举行年度“网络联盟”演习；我国未成年网民规模达1.91亿</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/mobile/351149.html">宏碁五款电脑驱动程序存在漏洞，可导致恶意软件入侵</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.freebuf.com/news/351133.html">应对挑战！元宇宙可能成为 2023 年网络攻击的主要途径</a></li>
+</ul>
+</li>
+<li>HackerNews<ul>
+<li><a target="_blank" rel="noopener" href="https://hackernews.cc/archives/42709">应对挑战！元宇宙可能成为 2023 年网络攻击的主要途径</a></li>
+<li><a target="_blank" rel="noopener" href="https://hackernews.cc/archives/42704">CISA 警告积极利用的关键 Oracle Fusion 中间件漏洞</a></li>
+<li><a target="_blank" rel="noopener" href="https://hackernews.cc/archives/42702">美国网络司令部与 DARPA 合作，推动将创新网络科技成果转化为网络战能力</a></li>
+<li><a target="_blank" rel="noopener" href="https://hackernews.cc/archives/42699">网灾降临！因遭遇网络攻击，这个国家政务网络瘫痪超三周</a></li>
+<li><a target="_blank" rel="noopener" href="https://hackernews.cc/archives/42694">冒充阿联酋政府的网络钓鱼活动猖獗，且目前规模仍在扩大</a></li>
+</ul>
+</li>
+<li>安全牛<ul>
+<li><a target="_blank" rel="noopener" href="https://www.aqniu.com/vendor/91693.html">一文详解 | 移动应用合规平台，让个人信息的安全保护 “合规” 且 “有效”</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.aqniu.com/hometop/91671.html">阅读推荐 | 值得一看的10本泛安全技术书籍</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.aqniu.com/homenews/91652.html">关于征集ISO&#x2F;IEC JTC1&#x2F;SC27网络安全国际标准提案的通知</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.aqniu.com/homenews/91653.html">产业观察 | 天际友盟完成B轮亿元级融资</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.aqniu.com/vendor/91651.html">工业互联网数据监测预警解决方案</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.aqniu.com/vendor/91649.html">聚焦|天防安全夯实技术实力，应对视频监控网络安全多元化难题</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.aqniu.com/vendor/91650.html">性能更高，功耗更低！Fortinet 发布全新下一代防火墙FortiGate 1000F</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.aqniu.com/focus/jiaodiantu/91646.html">现代企业零信任安全落地实践应用指南</a></li>
+</ul>
+</li>
+<li>奇客Solidot–传递最新科技情报<ul>
+<li><a target="_blank" rel="noopener" href="https://www.solidot.org/story?sid=73524">谁控制了互联网？</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.solidot.org/story?sid=73523">Mastodon 的安全性如何？</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.solidot.org/story?sid=73522">Snapchat 要求从明年开始员工每周回办公室工作四天</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.solidot.org/story?sid=73521">罗尔斯·罗伊斯成功测试氢气为燃料的飞机引擎</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.solidot.org/story?sid=73520">Let’s Encrypt 签发了逾三十亿证书</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.solidot.org/story?sid=73518">Anker 未经用户同意向云端上传信息</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.solidot.org/story?sid=73517">Emacs 29 开发基本完成</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.solidot.org/story?sid=73516">神舟十五号发射与空间站对接</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.solidot.org/story?sid=73515">Sam Bankman-Fried 称他完全不懂编程</a></li>
+</ul>
+</li>
+<li>黑海洋 - WIKI<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.upx8.com/3130">时间矩形（Rectangles）</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.upx8.com/3129">AI文生图（ERNIE-ViLG）</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.upx8.com/3128">蝶梦文字游戏</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.upx8.com/3127">日本妖怪</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.upx8.com/3126">AI壁纸（This Wallpaper Does Not Exist (Beta)）</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.upx8.com/3125">抖音TikTok无水印下载</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.upx8.com/3124">黑白照片转彩色（Palette – Colorize Photos）</a></li>
+</ul>
+</li>
+<li>绿盟科技研究通讯<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIyODYzNTU2OA==&mid=2247493763&idx=1&sn=ec54639df40db22145ab4c2f69361ac7&chksm=e84c4e5cdf3bc74a296c6131119caea14fd8c190f5a186c73f7309b39932df244ce2c55cc333&scene=58&subscene=0#rd">内存马的攻防博弈之旅之gRPC内存马</a></li>
+</ul>
+</li>
+<li>奇安信威胁情报中心<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI2MDc2MDA4OA==&mid=2247504599&idx=1&sn=3573b9455298e29ba8f13d85ab104141&chksm=ea6625a0dd11acb66a9805578b742e877718dea42daab1bd31915ba999a644de3c58f5fc8721&scene=58&subscene=0#rd">【CEATI联盟动态】欢迎7家新成员单位加入</a></li>
+</ul>
+</li>
+<li>互联网安全内参<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI4NDY2MDMwMw==&mid=2247506926&idx=1&sn=26d9f4d2dc290dde5b8aaec010077815&chksm=ebfa9ccedc8d15d834a3a0564c1a510e694e2b2979a5c9e5f62f68f5f9cbc59bc480d7f57101&scene=58&subscene=0#rd">勒索软件已冲击国家安全？英国议会启动专项调查</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI4NDY2MDMwMw==&mid=2247506926&idx=2&sn=79869229df423bcfaabf040ab598e22b&chksm=ebfa9ccedc8d15d8b7178f2009f92936f58d434326d3ed076ab87d29ca06ef07ab21d30bd010&scene=58&subscene=0#rd">卡巴斯基2023年高级威胁预测：邮件服务器和卫星成主要目标</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI4NDY2MDMwMw==&mid=2247506926&idx=3&sn=65f2987f3fcbe7a3295b24264dd0c2e9&chksm=ebfa9ccedc8d15d87df215cf8a9c3aa3ed769da5c0aaf3cd863bd9dae74ff94f4c4baebabf15&scene=58&subscene=0#rd">北约举行年度旗舰网络防御演习“网络联盟”</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI4NDY2MDMwMw==&mid=2247506926&idx=4&sn=8e33882c08f0be23beb2b3605f5fc924&chksm=ebfa9ccedc8d15d806b0ad981b99be040cfa74de45f592419c283d702a94f42c32106a0d8b58&scene=58&subscene=0#rd">美国网络司令部与DARPA合作，推动将创新网络科技成果转化为网络战能力</a></li>
+</ul>
+</li>
+<li>数世咨询<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkxNzA3MTgyNg==&mid=2247496342&idx=1&sn=d82b32468a9705a1ab865cddb718ec10&chksm=c144802bf633093d2d0e4a0f3fbf4345578cd4e52f3e3946fe61d5426fa4dff534b54885a84b&scene=58&subscene=0#rd">与安全运营相关的五个攻击面难题</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkxNzA3MTgyNg==&mid=2247496342&idx=2&sn=4991a48ffd52121102817186e4b1e589&chksm=c144802bf633093dd136374916e03c72fc0928c7fe595feb921b29c345e7b48761eaf2508291&scene=58&subscene=0#rd">六大API安全风险</a></li>
+</ul>
+</li>
+<li>极客公园<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MTMwNDMwODQ0MQ==&mid=2652974689&idx=1&sn=a2d098a018979ea42b659841e07d2f68&chksm=7e5453d74923dac1d189075786e68b78f1c5bfd4a0e6a543fb651778913e73b7705fc6fa226a&scene=58&subscene=0#rd">BBA 的故乡，中国汽车如何拿下欧洲父老乡亲</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MTMwNDMwODQ0MQ==&mid=2652974678&idx=1&sn=53f32a6afae36c2e3fe116a3ce71a59b&chksm=7e5453e04923daf6c7369ed838d0e084df09d8c588a59ee2aedb7e6679efa10595b740508a27&scene=58&subscene=0#rd">郭明錤：iPhone 14 出货预期下调 1000 万；美团机器人研究院成立；交个朋友开启海外电商直播培训 | 极客早知道</a></li>
+</ul>
+</li>
+<li>山石网科安全技术研究院<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzUzMDUxNTE1Mw==&mid=2247497643&idx=1&sn=b57d74a8d6875c4a970922b35346ac69&chksm=fa522215cd25ab03f5421436165d5085e6f2c2b2774e9da3ea8270b2f3a749868474329b00df&scene=58&subscene=0#rd">利用solidity与EVM本身的漏洞进行攻击（上）</a></li>
+</ul>
+</li>
+<li>情报分析师<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3Mjc1MTkwOA==&mid=2650520547&idx=1&sn=ed22191a0aef6412346b03fa0fa49065&chksm=871695a8b0611cbe8e6079f8773bf4ddaa26afaf482a70baeb0a605fd2cd09deb7d9a0958c24&scene=58&subscene=0#rd">海洋上的OSINT：海事情报收集技术</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA3Mjc1MTkwOA==&mid=2650520547&idx=2&sn=267649e74c4347cb810f033011dd2952&chksm=871695a8b0611cbedc334d7c35018cdfdf7d8eae5332bcbf0cd9741fcf9340d411c6981b1f32&scene=58&subscene=0#rd">刚刚发布！重磅报告！</a></li>
+</ul>
+</li>
+<li>小米安全中心<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI2NzI2OTExNA==&mid=2247514489&idx=1&sn=dde1e9d0af178846eb76716ca2535954&chksm=ea839fecddf416fa6298ceeb3f030371f20cf3265ba333e298298bae9ae04ec5ac5d67e827fe&scene=58&subscene=0#rd">MiSRC Q3季度榜单来啦</a></li>
+</ul>
+</li>
+<li>Qualys Security Blog<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.qualys.com/category/vulnerabilities-threat-research">Race condition in snap-confine’s must_mkdir_and_open_with_perms() (CVE-2022-3328)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.qualys.com/category/product-tech">Qualys Broadens Security Offerings for Oracle Cloud Infrastructure</a></li>
+</ul>
+</li>
+<li>Microsoft Security Blog<ul>
+<li><a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/security/blog/2022/11/30/implementing-zero-trust-access-to-business-data-on-byod-with-trustd-mtd-and-microsoft-entra/">Implementing Zero Trust access to business data on BYOD with Trustd MTD and Microsoft Entra</a></li>
+</ul>
+</li>
+<li>嘶吼专业版<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI0MDY1MDU4MQ==&mid=2247554492&idx=1&sn=fe5bfb410e8c837fea57df0db100c09d&chksm=e915c586de624c907fb715a2384731df62f769b0c457b9a4306feec7c53d838e57d3cb1df404&scene=58&subscene=0#rd">不管你隐藏的多深，总有一款应用可以探测到你的网络行踪</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI0MDY1MDU4MQ==&mid=2247554492&idx=2&sn=08314fa0324ad394c18765d2a1e2128d&chksm=e915c586de624c9050801674d06e73d90bcd087152cf3c37d6c30dea12513b2898900005d215&scene=58&subscene=0#rd">天际友盟完成B轮亿元级融资，致力打造亚洲第一的数字风险防护平台</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI0MDY1MDU4MQ==&mid=2247554492&idx=3&sn=7f61aca73320ed88bed415fcdc676400&chksm=e915c586de624c90261174dd92d473fdd799d625f41e66aa14376297cbbf1a00113b459e154a&scene=58&subscene=0#rd">热门报税软件将消费者个人数据发回给Meta和谷歌</a></li>
+</ul>
+</li>
+<li>Securityinfo.it<ul>
+<li><a target="_blank" rel="noopener" href="https://www.securityinfo.it/2022/11/30/fortinet-vendita-accessi-vpn-aziendali/?utm_source=rss&utm_medium=rss&utm_campaign=fortinet-vendita-accessi-vpn-aziendali">Fortinet: in vendita migliaia di accessi a reti aziendali</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.securityinfo.it/2022/11/30/il-top-management-e-poco-informato-sulle-minacce-alla-sicurezza-informatica/?utm_source=rss&utm_medium=rss&utm_campaign=il-top-management-e-poco-informato-sulle-minacce-alla-sicurezza-informatica">Il top management è poco informato sulle minacce alla sicurezza informatica</a></li>
+</ul>
+</li>
+<li>Schneier on Security<ul>
+<li><a target="_blank" rel="noopener" href="https://www.schneier.com/blog/archives/2022/11/facebook-fined-276m-under-gdpr.html">Facebook Fined $276M under GDPR</a></li>
+</ul>
+</li>
+<li>SANS Internet Storm Center, InfoCON: green<ul>
+<li><a target="_blank" rel="noopener" href="https://isc.sans.edu/diary/rss/29286">ISC Stormcast For Wednesday, November 30th, 2022 https://isc.sans.edu/podcastdetail.html&#x3f;id=8270, (Wed, Nov 30th)</a></li>
+</ul>
+</li>
+<li>Security Affairs<ul>
+<li><a target="_blank" rel="noopener" href="https://securityaffairs.co/wordpress/139126/malware/spanish-spyware-vendor-variston.html">Google links three exploitation frameworks to Spanish commercial spyware vendor Variston</a></li>
+<li><a target="_blank" rel="noopener" href="https://securityaffairs.co/wordpress/139112/malware/tiktok-invisible-challenge-malware.html">Attackers abused the popular TikTok Invisible Challenge to spread info-stealer</a></li>
+<li><a target="_blank" rel="noopener" href="https://securityaffairs.co/wordpress/139097/apt/unc4191-used-usb-devices.html">China-linked UNC4191 APT relies on USB Devices in attacks against entities in the Philippines</a></li>
+<li><a target="_blank" rel="noopener" href="https://securityaffairs.co/wordpress/139091/data-breach/enc-security-data-leak-sony-lexar.html">ENC Security, the encryption provider for Sony and Lexar, leaked sensitive data for over a year</a></li>
+</ul>
+</li>
+<li>Paul’s Security Weekly<ul>
+<li><a target="_blank" rel="noopener" href="http://podcast.securityweekly.com/swn-258-nudity-tik-tok-twitter-festo-iab-s-meta-acer-jason-wood">SWN #258 - Nudity, Tik Tok, Twitter, Festo, Iab’s, Meta, Acer, &amp; Jason Wood</a></li>
+</ul>
+</li>
+<li>SerHack - Security Researcher<ul>
+<li><a target="_blank" rel="noopener" href="https://serhack.me/articles/techniques-setting-up-pheripherals-dma-pio/">Techniques for Setting up Peripherals via DMA and PIO</a></li>
+</ul>
+</li>
+<li>360数字安全<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA4MTg0MDQ4Nw==&mid=2247549535&idx=1&sn=2b83e6f2fbb60a3bfecbb8c4128ffa30&chksm=9f8c9257a8fb1b41e6e77b6eb6fcb68ba007a40e36d4b1d1b30d67e0ad941708553bfb662fdd&scene=58&subscene=0#rd">唯一数字安全案例！360携手三峡集团入选2022中国“数字样板”工程</a></li>
+</ul>
+</li>
+<li>迪哥讲事<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIzMTIzNTM0MA==&mid=2247487088&idx=1&sn=5d80f10948a2d4c061038f63785cdec5&chksm=e8a60413dfd18d057ae86c3ce9218ea7941f874dd42ab6c5e0288805f409f3210c881c766333&scene=58&subscene=0#rd">​宠粉福利 | 攻守道安全书籍、现金红包和绣花杯垫抽奖</a></li>
+</ul>
+</li>
+<li>Security Through Education<ul>
+<li><a target="_blank" rel="noopener" href="https://www.social-engineer.org/social-engineering/the-psychic-and-the-social-engineer/">The Psychic and the Social Engineer</a></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/zhishi.jpg" alt="zhishi"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Tripse/">Tripse</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tripse.github.io/2022/12/01/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-1%EF%BC%89/">https://tripse.github.io/2022/12/01/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-1%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tripse.github.io" target="_blank">Tripse Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CyberNews/">CyberNews</a></div><div class="post_share"><div class="social-share" data-image="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://security-note.oss-cn-hangzhou.aliyuncs.com/2.jpg" target="_blank"><img class="post-qr-code-img" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/2.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://security-note.oss-cn-hangzhou.aliyuncs.com/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/12/02/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-2%EF%BC%89/"><img class="prev-cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">每日安全资讯（2022-12-02）</div></div></a></div><div class="next-post pull-right"><a href="/2022/11/30/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-11-29%EF%BC%89/"><img class="next-cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">每日安全资讯（2022-11-29）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/11/30/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-11-29%EF%BC%89/" title="每日安全资讯（2022-11-29）"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-30</div><div class="title">每日安全资讯（2022-11-29）</div></div></a></div><div><a href="/2022/11/30/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-11-30%EF%BC%89/" title="每日安全资讯（2022-11-30）"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-30</div><div class="title">每日安全资讯（2022-11-30）</div></div></a></div><div><a href="/2022/12/02/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-2%EF%BC%89/" title="每日安全资讯（2022-12-02）"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-02</div><div class="title">每日安全资讯（2022-12-02）</div></div></a></div><div><a href="/2022/12/04/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-4%EF%BC%89/" title="每日安全资讯（2022-12-04）"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-04</div><div class="title">每日安全资讯（2022-12-04）</div></div></a></div><div><a href="/2022/12/03/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-3%EF%BC%89/" title="每日安全资讯（2022-12-03）"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-03</div><div class="title">每日安全资讯（2022-12-03）</div></div></a></div><div><a href="/2022/12/06/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-6%EF%BC%89/" title="每日安全资讯（2022-12-06）"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-06</div><div class="title">每日安全资讯（2022-12-06）</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Tripse</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tripse/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Tripse/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:leadlifeLD@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/324542959?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="iconfont  icon-bilibili"></i></a><a class="social-icon" href="https://jq.qq.com/?_wv=1027&amp;k=dF6M99TL" target="_blank" title="QQ群"><i class="iconfont  icon-QQ"></i></a><a class="social-icon" href="https://tripse.github.io/wechat.html" target="_blank" title=""><i class="iconfont  icon-wechat-fill"></i></a><a class="social-icon" href="https://tieba.baidu.com/f?ie=utf-8&amp;kw=leadlife" target="_blank" title=""><i class="iconfont  icon-social-tieba"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-01%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">每日安全资讯（2022-12-01）</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/06/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-6%EF%BC%89/" title="每日安全资讯（2022-12-06）"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-06）"/></a><div class="content"><a class="title" href="/2022/12/06/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-6%EF%BC%89/" title="每日安全资讯（2022-12-06）">每日安全资讯（2022-12-06）</a><time datetime="2022-12-06T09:00:33.803Z" title="发表于 2022-12-06 17:00:33">2022-12-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/04/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-4%EF%BC%89/" title="每日安全资讯（2022-12-04）"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-04）"/></a><div class="content"><a class="title" href="/2022/12/04/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-4%EF%BC%89/" title="每日安全资讯（2022-12-04）">每日安全资讯（2022-12-04）</a><time datetime="2022-12-04T06:41:14.071Z" title="发表于 2022-12-04 14:41:14">2022-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/03/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-3%EF%BC%89/" title="每日安全资讯（2022-12-03）"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-03）"/></a><div class="content"><a class="title" href="/2022/12/03/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-3%EF%BC%89/" title="每日安全资讯（2022-12-03）">每日安全资讯（2022-12-03）</a><time datetime="2022-12-03T06:36:18.708Z" title="发表于 2022-12-03 14:36:18">2022-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8B)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E6%97%A0%E7%BA%BF%E4%B8%8E%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87-%E7%BB%88%E7%BB%93%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇"/></a><div class="content"><a class="title" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8B)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E6%97%A0%E7%BA%BF%E4%B8%8E%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87-%E7%BB%88%E7%BB%93%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇</a><time datetime="2022-12-03T06:25:26.576Z" title="发表于 2022-12-03 14:25:26">2022-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(2)/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)"/></a><div class="content"><a class="title" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(2)/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)</a><time datetime="2022-12-03T06:24:00.328Z" title="发表于 2022-12-03 14:24:00">2022-12-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By Tripse</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

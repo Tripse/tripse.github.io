@@ -1,0 +1,446 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Tripse Blog</title><meta name="keywords" content="Web安全 安全攻防 红蓝对抗 黑客技术 安全演练 CTF 信息安全与评估 DCN设备 神州数码 去阿诺高职院校技能大赛 世界技能大赛 Writeup vulnhub 无线安全 SRC应急响应 安全加固 应急响应 漏洞挖掘"><meta name="author" content="Tripse"><meta name="copyright" content="Tripse"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Tripse Blog">
+<meta property="og:url" content="https://tripse.github.io/index.html">
+<meta property="og:site_name" content="Tripse Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg">
+<meta property="article:author" content="Tripse">
+<meta property="article:tag" content="Web安全 安全攻防 红蓝对抗 黑客技术 安全演练 CTF 信息安全与评估 DCN设备 神州数码 去阿诺高职院校技能大赛 世界技能大赛 Writeup vulnhub 无线安全 SRC应急响应 安全加固 应急响应 漏洞挖掘">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg"><link rel="shortcut icon" href="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg"><link rel="canonical" href="https://tripse.github.io/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Tripse Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-12-08 11:38:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/icon.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('https://security-note.oss-cn-hangzhou.aliyuncs.com/wallpaper-erciyuan-1.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Tripse Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">Tripse Blog</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Tripse/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:leadlifeLD@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/324542959?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="iconfont  icon-bilibili"></i></a><a class="social-icon" href="https://jq.qq.com/?_wv=1027&amp;k=dF6M99TL" target="_blank" title="QQ群"><i class="iconfont  icon-QQ"></i></a><a class="social-icon" href="https://tripse.github.io/wechat.html" target="_blank" title=""><i class="iconfont  icon-wechat-fill"></i></a><a class="social-icon" href="https://tieba.baidu.com/f?ie=utf-8&amp;kw=leadlife" target="_blank" title=""><i class="iconfont  icon-social-tieba"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2022/12/06/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-6%EF%BC%89/" title="每日安全资讯（2022-12-06）"><img class="post_bg" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-06）"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/06/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-6%EF%BC%89/" title="每日安全资讯（2022-12-06）">每日安全资讯（2022-12-06）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-06T09:00:33.803Z" title="发表于 2022-12-06 17:00:33">2022-12-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CyberNews/">CyberNews</a></span></div><div class="content">每日安全资讯（2022-12-06）
+
+author：leadlife
+time：2022&#x2F;12&#x2F;06
+微信：Tripse
+知识星球：LeadlifeSec
+QQ：482949203
+QQ群：775454947
+
+
+paper - Last paper
+DuckLogs 恶意软件在野外执行多种恶意活动
+
+
+嘶吼 RoarTalk – 回归最本质的信息安全,互联网安全新媒体,4hou.com
+“2022数字金融创新发布周暨第十八届宣传年年度盛典”正式开幕！
+2022年最常被利用的十大漏洞
+隐形威胁：小心遗留系统中的被遗忘数据（Forgotten Data）
+
+
+先知安全技术社区
+JAVA审计初探
+详解通过动态加载实现攻击的CC3和CC4
+企业的安全运营——浅析SDL模型
+记一次攻防演练
+
+
+CXSECURITY Database RSS Feed - CXSecurity.com
+Backdoor.Win32.Delf.gj &#x2F; Information Disclosure
+IBM Websphere Application Server 7.0 Cross ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/12/04/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-4%EF%BC%89/" title="每日安全资讯（2022-12-04）"><img class="post_bg" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-04）"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/04/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-4%EF%BC%89/" title="每日安全资讯（2022-12-04）">每日安全资讯（2022-12-04）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-04T06:41:14.071Z" title="发表于 2022-12-04 14:41:14">2022-12-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CyberNews/">CyberNews</a></span></div><div class="content">每日安全资讯（2022-12-04）
+
+author：leadlife
+time：2022&#x2F;12&#x2F;04
+微信：Tripse
+知识星球：LeadlifeSec
+QQ：482949203
+QQ群：775454947
+
+
+SecWiki News
+SecWiki News 2022-12-03 Review
+
+
+Sploitus.com Exploits RSS Feed
+Exploit for Authentication Bypass by Spoofing in Apache Apisix exploit
+
+
+嘶吼 RoarTalk – 回归最本质的信息安全,互联网安全新媒体,4hou.com
+CVE-2022-4020：Acer笔记本漏洞可禁用安全启动功能
+以 Roshtyak 后门为例介绍恶意软件的自保护、逃逸等技巧（一）
+
+
+obaby@mars
+秀人美女网爬虫 【Windows】【22.12.03】
+
+
+Recent Commits to cve:main
+Update Sat Dec  3 09:40:28 UTC 2022
+
+
+Der Flounder
+ ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/12/03/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-3%EF%BC%89/" title="每日安全资讯（2022-12-03）"><img class="post_bg" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-03）"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/03/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-3%EF%BC%89/" title="每日安全资讯（2022-12-03）">每日安全资讯（2022-12-03）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-03T06:36:18.708Z" title="发表于 2022-12-03 14:36:18">2022-12-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CyberNews/">CyberNews</a></span></div><div class="content">每日安全资讯（2022-12-03）
+
+author：leadlife
+time：2022&#x2F;12&#x2F;03
+微信：Tripse
+知识星球：LeadlifeSec
+QQ：482949203
+QQ群：775454947
+
+
+paper - Last paper
+CVE-2022-29464 WSO2 API Manager 任意文件上传、远程代码执行漏洞
+
+
+SecWiki News
+SecWiki News 2022-12-02 Review
+
+
+Trustwave Blog
+Say Hello to SpiderLabs: Trustwave Security Testing
+
+
+Recent Commits to cve:main
+Update Fri Dec  2 09:48:42 UTC 2022
+
+
+obaby@mars
+寻情记
+
+
+先知安全技术社区
+win pwn初探（三）
+
+
+Sploitus.com Exploits RSS Feed
+Backdoor.Win32.Delf.gj MVID-2022-0663 Information Disclosure  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8B)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E6%97%A0%E7%BA%BF%E4%B8%8E%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87-%E7%BB%88%E7%BB%93%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇"><img class="post_bg" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8B)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E6%97%A0%E7%BA%BF%E4%B8%8E%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87-%E7%BB%88%E7%BB%93%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-03T06:25:26.576Z" title="发表于 2022-12-03 14:25:26">2022-12-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0/">信息安全管理与评估</a></span></div><div class="content">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇
+
+author：leadlife
+time：2022&#x2F;3&#x2F;11
+微信：Tripse
+知识星球：LeadlifeSec
+QQ：482949203
+QQ群：775454947
+
+在前面的篇章中，我们完成了 RS，FW，WAF，NETLOG 等安全设备配置，但仅缺无线 AC 与 AP 的配置过程，让我继续带领大家进入 WLAN 的题目，一步一步参悟与解析，望能对大家起到抛砖引玉的作用。
+WS DHCP 下发三层发现 AP 被动上线涉及题目1WS上配置DHCP，管理VLAN为VLAN101,为AP下发管理地址，保证完成AP注册； 为无线用户VLAN10,20, 有线用户VLAN 30,40下发IP地址；
+
+注意点
+AP 上需要配置 DHCP 服务，通过 Option 43 特殊字段下发
+RS 需要配置 DHCP 服务，为业务用户下发 IP 地址，同时做 DHCP 中继转发 WS DHCP 报文以 AP 被动发现
+
+操作WS 配置 DHCP 服务下发 IP12345678910 ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(2)/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)"><img class="post_bg" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(2)/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-03T06:24:00.328Z" title="发表于 2022-12-03 14:24:00">2022-12-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0/">信息安全管理与评估</a></span></div><div class="content">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)
+
+author：leadlife
+time：2022&#x2F;3&#x2F;11
+微信：Tripse
+知识星球：LeadlifeSec
+QQ：482949203
+QQ群：775454947
+
+在我们的 《2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务二-设备安全配置篇（1）》篇，我们已经完成了 FW(防火墙) 和 RS(核心三层路由器) 的安全配置，下面让我带领大家进入 NetLog (日志服务器) 以及 WAF (网站应用防火墙) 的安全配置中，享受题目给大家带来的知识点以及安全设备的魅力
+NetLog 时间表注意点参考
+  有关时间段配置参考说明：
+
+
+
+
+参数
+说明
+
+
+
+周期时间
+表示循环往复按周期生效的策略时间
+
+
+工作日
+配置范围从【周日】到【周六】，点击【全选】将全部选中。
+
+
+时段
+一个时间策略中每项最大可以设置四个具体时段。                                                                ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(1)/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结(中)-任务二-设备安全配置篇(1)"><img class="post_bg" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021-技能大赛-信息安全管理与评估-DCN 设备总结(中)-任务二-设备安全配置篇(1)"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(1)/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结(中)-任务二-设备安全配置篇(1)">2021-技能大赛-信息安全管理与评估-DCN 设备总结(中)-任务二-设备安全配置篇(1)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-03T06:21:52.041Z" title="发表于 2022-12-03 14:21:52">2022-12-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0/">信息安全管理与评估</a></span></div><div class="content">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇（1）
+
+author：leadlife
+time：2022&#x2F;11&#x2F;30
+微信：Tripse
+知识星球：LeadlifeSec
+QQ：482949203
+QQ群：775454947
+
+在我们的 《2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置》篇，我们已经完成了基本的网络路由配置，其中 VLAN 以及对应的 IP 地址配置 and 一些端口 access trunk 配置，下面让我带领代价进入设备安全配置，一题一题，将题目从原理刨析给各位同学
+任务二操作Telnet Banner类似题型1RS和WS开启telnet登录功能，配置使用telnet方式登录终端界面前显示如下授权信息：“WARNING!!! Authorised access only, all of your done will be recorded! Disconnected IMMEDIATELY if you are not an authorised user! O ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8A)-%E4%BB%BB%E5%8A%A1%E4%B8%80%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置篇"><img class="post_bg" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置篇"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8A)-%E4%BB%BB%E5%8A%A1%E4%B8%80%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置篇">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置篇</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-03T06:18:41.453Z" title="发表于 2022-12-03 14:18:41">2022-12-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0/">信息安全管理与评估</a></span></div><div class="content">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (上)-任务一网络设备路由配置篇
+
+author：leadlife
+time：2022&#x2F;3&#x2F;11
+微信：Tripse
+知识星球：LeadlifeSec
+QQ：482949203
+QQ群：775454947
+
+赛题基本信息选取赛题《2021年全国职业院校技能大赛高职组“信息安全管理与评估”赛项任务书4》
+搭建部分赛项信息加上渗透任务总共⏲ 270 分钟
+
+
+
+竞赛阶段
+任务阶段
+竞赛任务
+竞赛时间
+分值
+
+
+
+第一阶段：平台搭建
+任务1
+网络平台搭建
+270分钟
+60
+
+
+第一阶段：安全设备配置防护
+任务2
+网络安全设备配置与防护
+270分钟
+240
+
+
+赛项需注意的内容本次大赛，各位选手需要完成三个阶段的任务，&#x3D;&#x3D;其中第一个阶段需要按裁判组专门提供的U盘中的“XXX-答题模板”提交答案。&#x3D;&#x3D;第二、三阶段请根据现场具体题目要求操作。
+选手首先需要在U盘的&#x3D;&#x3D;根目录下建立一个名为“GWxx”的文件夹（xx用具体的工位号替代），&#x3D;&#x3D;赛题 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/12/02/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-2%EF%BC%89/" title="每日安全资讯（2022-12-02）"><img class="post_bg" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-02）"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/02/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-2%EF%BC%89/" title="每日安全资讯（2022-12-02）">每日安全资讯（2022-12-02）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-02T08:30:21.082Z" title="发表于 2022-12-02 16:30:21">2022-12-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CyberNews/">CyberNews</a></span></div><div class="content">每日安全资讯（2022-12-02）
+
+author：leadlife
+time：2022&#x2F;12&#x2F;02
+微信：Tripse
+知识星球：LeadlifeSec
+QQ：482949203
+QQ群：775454947
+
+
+paper - Last paper
+CVE-2020-9273 ProFTPd RCE 漏洞分析与利用
+CVE-2022-22972 VMware Workspace ONE Access 身份认证绕过漏洞分析
+
+
+Recent Commits to cve:main
+Update Thu Dec  1 09:43:16 UTC 2022
+
+
+SecWiki News
+SecWiki News 2022-12-01 Review
+
+
+Der Flounder
+Session videos from Jamf Nation User Conference 2022 now available
+
+
+先知安全技术社区
+MySql安全总结
+
+
+机智的程序员小熊
+iptables常用命令
+
+
+Sploitus.com Exploits RSS Feed
+Expl ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/12/01/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-1%EF%BC%89/" title="每日安全资讯（2022-12-01）"><img class="post_bg" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-01）"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/01/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-1%EF%BC%89/" title="每日安全资讯（2022-12-01）">每日安全资讯（2022-12-01）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-01T04:37:20.463Z" title="发表于 2022-12-01 12:37:20">2022-12-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CyberNews/">CyberNews</a></span></div><div class="content">每日安全资讯（2022-12-01）
+
+author：leadlife
+time：2022&#x2F;12&#x2F;01
+微信：Tripse
+知识星球：LeadlifeSec
+QQ：482949203
+QQ群：775454947
+
+
+机智的程序员小熊
+正则表达式速查卡
+
+
+安全客-有思想的安全新媒体
+CVE-2022-42889 Apache Commons Text RCE漏洞分析
+Group-IB研究显示：世界杯球迷正在遭遇网络诈骗浪潮
+安全专家披露亚马逊网络服务AWS AppSync漏洞
+北约举行年度“网络联盟”演习
+安全团队发现Crysis勒索软件变种Wiki在韩国活动
+数字安全观察每周简报【行业动态篇】2022.11.17-2022.11.23
+宏碁电脑存在驱动程序漏洞，启动过程中可部署恶意软件
+消灭0Day?Google Project Zero呼吁Android加快修复漏洞
+540万Twitter账号信息在黑客论坛免费共享
+
+
+paper - Last paper
+com 组件的从 0 到 1
+在 Android 中开发 eBPF 程序学习总结（三）
+
+
+Recent  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/11/30/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-11-29%EF%BC%89/" title="每日安全资讯（2022-11-29）"><img class="post_bg" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-11-29）"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/11/30/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-11-29%EF%BC%89/" title="每日安全资讯（2022-11-29）">每日安全资讯（2022-11-29）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-11-30T08:16:48.835Z" title="发表于 2022-11-30 16:16:48">2022-11-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/CyberNews/">CyberNews</a></span></div><div class="content">每日安全资讯（2022-11-29）
+
+author：leadlife
+time：2022&#x2F;11&#x2F;30
+微信：Tripse
+知识星球：LeadlifeSec
+QQ：482949203
+QQ群：775454947
+
+
+Files ≈ Packet Storm
+vBulletin 5.5.2 PHP Object Injection
+Ubuntu Security Notice USN-5745-1
+Red Hat Security Advisory 2022-8639-01
+Red Hat Security Advisory 2022-8638-01
+Red Hat Security Advisory 2022-8643-01
+Red Hat Security Advisory 2022-8646-01
+Red Hat Security Advisory 2022-8649-01
+Red Hat Security Advisory 2022-8640-01
+Red Hat Security Advisory 2022-8648-01
+Red Hat Security  ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Tripse</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tripse/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Tripse/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:leadlifeLD@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/324542959?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="iconfont  icon-bilibili"></i></a><a class="social-icon" href="https://jq.qq.com/?_wv=1027&amp;k=dF6M99TL" target="_blank" title="QQ群"><i class="iconfont  icon-QQ"></i></a><a class="social-icon" href="https://tripse.github.io/wechat.html" target="_blank" title=""><i class="iconfont  icon-wechat-fill"></i></a><a class="social-icon" href="https://tieba.baidu.com/f?ie=utf-8&amp;kw=leadlife" target="_blank" title=""><i class="iconfont  icon-social-tieba"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/12/06/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-6%EF%BC%89/" title="每日安全资讯（2022-12-06）"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-06）"/></a><div class="content"><a class="title" href="/2022/12/06/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-6%EF%BC%89/" title="每日安全资讯（2022-12-06）">每日安全资讯（2022-12-06）</a><time datetime="2022-12-06T09:00:33.803Z" title="发表于 2022-12-06 17:00:33">2022-12-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/04/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-4%EF%BC%89/" title="每日安全资讯（2022-12-04）"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-04）"/></a><div class="content"><a class="title" href="/2022/12/04/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-4%EF%BC%89/" title="每日安全资讯（2022-12-04）">每日安全资讯（2022-12-04）</a><time datetime="2022-12-04T06:41:14.071Z" title="发表于 2022-12-04 14:41:14">2022-12-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/03/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-3%EF%BC%89/" title="每日安全资讯（2022-12-03）"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/cybernews.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="每日安全资讯（2022-12-03）"/></a><div class="content"><a class="title" href="/2022/12/03/%E6%AF%8F%E6%97%A5%E5%AE%89%E5%85%A8%E8%B5%84%E8%AE%AF%EF%BC%882022-12-3%EF%BC%89/" title="每日安全资讯（2022-12-03）">每日安全资讯（2022-12-03）</a><time datetime="2022-12-03T06:36:18.708Z" title="发表于 2022-12-03 14:36:18">2022-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8B)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E6%97%A0%E7%BA%BF%E4%B8%8E%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87-%E7%BB%88%E7%BB%93%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇"/></a><div class="content"><a class="title" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%8B)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E6%97%A0%E7%BA%BF%E4%B8%8E%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87-%E7%BB%88%E7%BB%93%E7%AF%87/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (下)-任务二-无线与安全配置篇-终结篇</a><time datetime="2022-12-03T06:25:26.576Z" title="发表于 2022-12-03 14:25:26">2022-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(2)/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/信息安全管理与评估.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)"/></a><div class="content"><a class="title" href="/2022/12/03/2021-%E6%8A%80%E8%83%BD%E5%A4%A7%E8%B5%9B-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0-DCN%20%E8%AE%BE%E5%A4%87%E6%80%BB%E7%BB%93%20(%E4%B8%AD)-%E4%BB%BB%E5%8A%A1%E4%BA%8C-%E8%AE%BE%E5%A4%87%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE%E7%AF%87(2)/" title="2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)">2021-技能大赛-信息安全管理与评估-DCN 设备总结 (中)-任务二-设备安全配置篇(2)</a><time datetime="2022-12-03T06:24:00.328Z" title="发表于 2022-12-03 14:24:00">2022-12-03</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/CyberNews/"><span class="card-category-list-name">CyberNews</span><span class="card-category-list-count">7</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Github/"><span class="card-category-list-name">Github</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0/"><span class="card-category-list-name">信息安全管理与评估</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"><span class="card-category-list-name">渗透测试</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%9F%A5%E8%AF%86%E6%98%9F%E7%90%83/"><span class="card-category-list-name">知识星球</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/CyberNews/" style="font-size: 1.5em; color: #99a9bf">CyberNews</a> <a href="/tags/Github/" style="font-size: 1.1em; color: #999">Github</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E4%B8%8E%E8%AF%84%E4%BC%B0/" style="font-size: 1.3em; color: #99a1ac">信息安全管理与评估</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E6%8C%87%E5%8D%97/" style="font-size: 1.1em; color: #999">工具指南</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E6%98%9F%E7%90%83/" style="font-size: 1.1em; color: #999">知识星球</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/12/"><span class="card-archive-list-date">十二月 2022</span><span class="card-archive-list-count">9</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">九月 2022</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">15</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-12-08T03:38:45.415Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By Tripse</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+  if (true) { 
+    window.typed = new Typed("#subtitle", {
+      strings: ["it is not that i am so smart  it is just that i stay with problems longer"],
+      startDelay: 50,
+      typeSpeed: 50,
+      loop: true,
+      backSpeed: 50
+    })
+  } else {
+    document.getElementById("subtitle").innerHTML = 'it is not that i am so smart  it is just that i stay with problems longer'
+  }
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.jsdelivr.net/npm/typed.js/lib/typed.min.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
