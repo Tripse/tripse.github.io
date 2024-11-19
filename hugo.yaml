@@ -6,6 +6,7 @@ theme: PaperMod
 
 params:
     homeInfoParams:
+        Title: 'Hi, here' # 主题
         Content: '希望对你有所帮助' # 描述
     SocialIcons:
         - name: github
