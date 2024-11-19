@@ -1,0 +1,36 @@
+baseURL: https://tripse.github.io/
+languageCode: zh-CN
+title: tripse blog
+theme: PaperMod
+
+
+params:
+    homeInfoParams:
+        Content: '希望对你有所帮助' # 描述
+    SocialIcons:
+        - name: github
+          url: 'https://github.com/Tripse'
+        - name: bilibili
+          url: 'https://space.bilibili.com/324542959'
+
+    ShowBreadCrumbs: true # 面包屑导航
+    ShowPostNavLinks: true # 文章前后页按钮
+    ShowCodeCopyButtons: true # 显示复制代码按钮
+    showtoc: true # 在每篇文章开头显示目录
+
+menu:
+  main:
+    - identifier: tags
+      name: tags
+      url: /tags/
+      weight: 30
+    - identifier: search # 需做额外配置，具体参考下文
+      name: search
+      url: /search/
+      weight: 40
+
+outputs:
+    home:
+        - HTML
+        - RSS
+        - JSON # is necessary
