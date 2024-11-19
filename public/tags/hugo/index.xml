@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Posts on tripse blog</title>
-    <link>https://tripse.github.io/posts/</link>
-    <description>Recent content in Posts on tripse blog</description>
+    <title>Hugo on tripse blog</title>
+    <link>https://tripse.github.io/tags/hugo/</link>
+    <description>Recent content in Hugo on tripse blog</description>
     <generator>Hugo -- 0.138.0</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 19 Nov 2024 14:25:56 +0800</lastBuildDate>
-    <atom:link href="https://tripse.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tripse.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hugo</title>
       <link>https://tripse.github.io/posts/hugo/</link>
