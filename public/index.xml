@@ -13,11 +13,7 @@
       <link>https://tripse.github.io/posts/hugo/</link>
       <pubDate>Tue, 19 Nov 2024 14:25:56 +0800</pubDate>
       <guid>https://tripse.github.io/posts/hugo/</guid>
-      <description>&lt;p&gt;references:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.cnblogs.com/liumylay/articles/17936667.html&#34;&gt;https://www.cnblogs.com/liumylay/articles/17936667.html&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.elegantcrazy.com/posts/blog/build-blog-with-github-pages-hugo-and-papermod/&#34;&gt;https://www.elegantcrazy.com/posts/blog/build-blog-with-github-pages-hugo-and-papermod/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+      <description>&lt;p&gt;hugo blog &amp;amp; github page &amp;amp; workglow 部署&lt;/p&gt;
 &lt;h2 id=&#34;部署&#34;&gt;部署&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;brew install hugo
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;hugo new site hugo -f --format yaml

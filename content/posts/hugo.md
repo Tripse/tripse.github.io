@@ -6,9 +6,7 @@ tags:
   - hugo
   - blog
 ---
-references:
-- https://www.cnblogs.com/liumylay/articles/17936667.html
-- https://www.elegantcrazy.com/posts/blog/build-blog-with-github-pages-hugo-and-papermod/
+hugo blog & github page & workglow 部署
 
 ## 部署
 ```bash
@@ -201,3 +199,7 @@ git add .
 git commit -m '[描述信息]'
 git push origin
 ```
+
+## references 
+- https://www.cnblogs.com/liumylay/articles/17936667.html
+- https://www.elegantcrazy.com/posts/blog/build-blog-with-github-pages-hugo-and-papermod/
