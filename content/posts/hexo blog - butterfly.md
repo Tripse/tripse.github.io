@@ -1,7 +1,7 @@
 ---
 date: 2024-11-20T11:36:40+08:00
 draft: false
-title: hugo blog - PaperMod
+title: hexo blog - butterfly
 tags:
   - hexo
   - blog
